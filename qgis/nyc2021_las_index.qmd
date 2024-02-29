@@ -1,0 +1,79 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.36.0-Maidenhead">
+  <identifier>index2017LAS_shape_nad832011_LI_SP</identifier>
+  <parentidentifier></parentidentifier>
+  <language>ENG</language>
+  <type>dataset</type>
+  <title>NYC 2017 LiDAR Topographic LAS Index</title>
+  <abstract>This shapefile represents the LiDAR LAS Index for the New York City Topographic LiDAR study area. This data is delineated in 2,500 ft x 2,500 ft tiles. The horizontal datum for this dataset is NAD83, the vertical datum is NAVD88, Geoid 12B, and it is projected in New York State Plane - Long Island. Units are in US Survey Feet. Quantum Spatial collected the New York City LiDAR data for The City of New York between 05/03/17 and 05/17/17.
+
+Provide support for high resolution terrain elevation data from the New York City Topographic LiDAR dataset. 
+
+This data is projected in New York State Plane - Long Island</abstract>
+  <keywords vocabulary="Search keys">
+    <keyword>Light Detection and Ranging</keyword>
+    <keyword>LiDAR</keyword>
+    <keyword>Boundary</keyword>
+    <keyword>Shapefile</keyword>
+    <keyword>New York City</keyword>
+    <keyword>New York</keyword>
+    <keyword>NYC</keyword>
+    <keyword>Manhattan</keyword>
+    <keyword>Brooklyn</keyword>
+    <keyword>Queens</keyword>
+    <keyword>The Bronx</keyword>
+    <keyword>Staten Island</keyword>
+  </keywords>
+  <keywords vocabulary="gmd:topicCategory">
+    <keyword>Light Detection and Ranging</keyword>
+    <keyword> LiDAR</keyword>
+    <keyword> LAS Index</keyword>
+    <keyword> Shapefile</keyword>
+  </keywords>
+  <contact>
+    <contactAddress>
+      <type>both</type>
+      <address>1100 NE Circle Blvd., Suite 126</address>
+      <city>Corvallis</city>
+      <administrativearea>OR</administrativearea>
+      <postalcode>97330</postalcode>
+      <country>US</country>
+    </contactAddress>
+    <name></name>
+    <organization>Quantum Spatial</organization>
+    <position></position>
+    <voice>541-752-1204</voice>
+    <fax></fax>
+    <email></email>
+    <role></role>
+  </contact>
+  <links/>
+  <dates>
+    <date type="Published" value="2018-06-19T00:00:00"/>
+  </dates>
+  <fees></fees>
+  <rights>The City of New York</rights>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt>PROJCRS["NAD83(2011) / New York Long Island (ftUS)",BASEGEOGCRS["NAD83(2011)",DATUM["NAD83 (National Spatial Reference System 2011)",ELLIPSOID["GRS 1980",6378137,298.257222101,LENGTHUNIT["metre",1]]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",6318]],CONVERSION["SPCS83 New York Long Island zone (US Survey feet)",METHOD["Lambert Conic Conformal (2SP)",ID["EPSG",9802]],PARAMETER["Latitude of false origin",40.1666666666667,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8821]],PARAMETER["Longitude of false origin",-74,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8822]],PARAMETER["Latitude of 1st standard parallel",41.0333333333333,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8823]],PARAMETER["Latitude of 2nd standard parallel",40.6666666666667,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8824]],PARAMETER["Easting at false origin",984250,LENGTHUNIT["US survey foot",0.304800609601219],ID["EPSG",8826]],PARAMETER["Northing at false origin",0,LENGTHUNIT["US survey foot",0.304800609601219],ID["EPSG",8827]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["US survey foot",0.304800609601219]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["US survey foot",0.304800609601219]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["United States (USA) - New York - counties of Bronx; Kings; Nassau; New York; Queens; Richmond; Suffolk."],BBOX[40.47,-74.26,41.3,-71.8]],ID["EPSG",6539]]</wkt>
+      <proj4>+proj=lcc +lat_0=40.1666666666667 +lon_0=-74 +lat_1=41.0333333333333 +lat_2=40.6666666666667 +x_0=300000 +y_0=0 +ellps=GRS80 +units=us-ft +no_defs</proj4>
+      <srsid>28662</srsid>
+      <srid>6539</srid>
+      <authid>EPSG:6539</authid>
+      <description>NAD83(2011) / New York Long Island (ftUS)</description>
+      <projectionacronym>lcc</projectionacronym>
+      <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial crs="EPSG:6539" minx="-74.25830000000000553" minz="0" dimensions="2" maxz="0" miny="40.49510000000000076" maxx="-73.69799999999999329" maxy="40.9164999999999992"/>
+    <temporal>
+      <period>
+        <start>2018-06-19T04:00:00Z</start>
+        <end></end>
+      </period>
+    </temporal>
+  </extent>
+</qgis>

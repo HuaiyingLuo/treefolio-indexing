@@ -1,0 +1,622 @@
+2024-01-31 15:38:57,519 - INFO - Loading Lidar Json data for tile 40150
+2024-01-31 15:38:57,520 - ERROR - Json directory does not exist for tile 40150
+2024-01-31 15:40:05,656 - INFO - Loading Lidar Json data for tile 40150
+2024-01-31 15:40:05,657 - ERROR - Json directory does not exist for tile 40150
+2024-01-31 15:40:05,660 - INFO - Loading Lidar Json data for tile 30145
+2024-01-31 15:40:05,660 - ERROR - Json directory does not exist for tile 30145
+2024-01-31 15:40:05,662 - INFO - Loading Lidar Json data for tile 910117
+2024-01-31 15:40:05,662 - ERROR - Json directory does not exist for tile 910117
+2024-01-31 15:40:05,664 - INFO - Loading Lidar Json data for tile 30147
+2024-01-31 15:40:05,664 - ERROR - Json directory does not exist for tile 30147
+2024-01-31 15:40:05,665 - INFO - Loading Lidar Json data for tile 990145
+2024-01-31 15:40:05,665 - ERROR - Json directory does not exist for tile 990145
+2024-01-31 15:40:05,668 - INFO - Loading Lidar Json data for tile 40160
+2024-01-31 15:40:05,668 - ERROR - Json directory does not exist for tile 40160
+2024-01-31 15:40:05,669 - INFO - Loading Lidar Json data for tile 40162
+2024-01-31 15:40:05,669 - ERROR - Json directory does not exist for tile 40162
+2024-01-31 15:40:05,671 - INFO - Loading Lidar Json data for tile 910120
+2024-01-31 15:40:05,671 - ERROR - Json directory does not exist for tile 910120
+2024-01-31 15:40:05,673 - INFO - Loading Lidar Json data for tile 40165
+2024-01-31 15:40:05,673 - ERROR - Json directory does not exist for tile 40165
+2024-01-31 15:40:05,675 - INFO - Loading Lidar Json data for tile 30152
+2024-01-31 15:40:05,675 - ERROR - Json directory does not exist for tile 30152
+2024-01-31 15:40:05,676 - INFO - Loading Lidar Json data for tile 40167
+2024-01-31 15:40:05,676 - ERROR - Json directory does not exist for tile 40167
+2024-01-31 15:40:05,677 - INFO - Loading Lidar Json data for tile 5137
+2024-01-31 15:40:05,678 - ERROR - Json directory does not exist for tile 5137
+2024-01-31 15:40:05,679 - INFO - Loading Lidar Json data for tile 40170
+2024-01-31 15:40:05,679 - ERROR - Json directory does not exist for tile 40170
+2024-01-31 15:40:05,680 - INFO - Loading Lidar Json data for tile 30155
+2024-01-31 15:40:05,680 - ERROR - Json directory does not exist for tile 30155
+2024-01-31 15:40:05,681 - INFO - Loading Lidar Json data for tile 40172
+2024-01-31 15:40:05,681 - ERROR - Json directory does not exist for tile 40172
+2024-01-31 15:40:05,682 - INFO - Loading Lidar Json data for tile 910122
+2024-01-31 15:40:05,682 - ERROR - Json directory does not exist for tile 910122
+2024-01-31 15:40:05,683 - INFO - Loading Lidar Json data for tile 40175
+2024-01-31 15:40:05,684 - ERROR - Json directory does not exist for tile 40175
+2024-01-31 15:40:05,684 - INFO - Loading Lidar Json data for tile 30157
+2024-01-31 15:40:05,684 - ERROR - Json directory does not exist for tile 30157
+2024-01-31 15:40:05,685 - INFO - Loading Lidar Json data for tile 40177
+2024-01-31 15:40:05,685 - ERROR - Json directory does not exist for tile 40177
+2024-01-31 15:40:05,687 - INFO - Loading Lidar Json data for tile 30160
+2024-01-31 15:40:05,687 - ERROR - Json directory does not exist for tile 30160
+2024-01-31 15:40:05,688 - INFO - Loading Lidar Json data for tile 910125
+2024-01-31 15:40:05,688 - ERROR - Json directory does not exist for tile 910125
+2024-01-31 15:40:05,691 - INFO - Loading Lidar Json data for tile 912117
+2024-01-31 15:40:05,691 - ERROR - Json directory does not exist for tile 912117
+2024-01-31 15:40:05,692 - INFO - Loading Lidar Json data for tile 40197
+2024-01-31 15:40:05,693 - ERROR - Json directory does not exist for tile 40197
+2024-01-31 15:40:05,694 - INFO - Loading Lidar Json data for tile 30172
+2024-01-31 15:40:05,694 - ERROR - Json directory does not exist for tile 30172
+2024-01-31 15:40:05,695 - INFO - Loading Lidar Json data for tile 40222
+2024-01-31 15:40:05,695 - ERROR - Json directory does not exist for tile 40222
+2024-01-31 15:40:05,696 - INFO - Loading Lidar Json data for tile 40237
+2024-01-31 15:40:05,697 - ERROR - Json directory does not exist for tile 40237
+2024-01-31 15:40:05,697 - INFO - Loading Lidar Json data for tile 40240
+2024-01-31 15:40:05,698 - ERROR - Json directory does not exist for tile 40240
+2024-01-31 15:40:05,698 - INFO - Loading Lidar Json data for tile 40242
+2024-01-31 15:40:05,699 - ERROR - Json directory does not exist for tile 40242
+2024-01-31 15:40:05,699 - INFO - Loading Lidar Json data for tile 40245
+2024-01-31 15:40:05,699 - ERROR - Json directory does not exist for tile 40245
+2024-01-31 15:40:05,700 - INFO - Loading Lidar Json data for tile 912127
+2024-01-31 15:40:05,700 - ERROR - Json directory does not exist for tile 912127
+2024-01-31 15:40:05,701 - INFO - Loading Lidar Json data for tile 912130
+2024-01-31 15:40:05,702 - ERROR - Json directory does not exist for tile 912130
+2024-01-31 15:40:05,702 - INFO - Loading Lidar Json data for tile 42150
+2024-01-31 15:40:05,702 - ERROR - Json directory does not exist for tile 42150
+2024-01-31 15:40:05,703 - INFO - Loading Lidar Json data for tile 912132
+2024-01-31 15:40:05,703 - ERROR - Json directory does not exist for tile 912132
+2024-01-31 15:40:05,704 - INFO - Loading Lidar Json data for tile 42160
+2024-01-31 15:40:05,705 - ERROR - Json directory does not exist for tile 42160
+2024-01-31 15:40:05,707 - INFO - Loading Lidar Json data for tile 42162
+2024-01-31 15:40:05,707 - ERROR - Json directory does not exist for tile 42162
+2024-01-31 15:40:05,708 - INFO - Loading Lidar Json data for tile 42165
+2024-01-31 15:40:05,709 - ERROR - Json directory does not exist for tile 42165
+2024-01-31 15:40:05,710 - INFO - Loading Lidar Json data for tile 912135
+2024-01-31 15:40:05,710 - ERROR - Json directory does not exist for tile 912135
+2024-01-31 15:40:05,711 - INFO - Loading Lidar Json data for tile 42167
+2024-01-31 15:40:05,712 - ERROR - Json directory does not exist for tile 42167
+2024-01-31 15:40:05,712 - INFO - Loading Lidar Json data for tile 42170
+2024-01-31 15:40:05,713 - ERROR - Json directory does not exist for tile 42170
+2024-01-31 15:40:05,713 - INFO - Loading Lidar Json data for tile 912137
+2024-01-31 15:40:05,713 - ERROR - Json directory does not exist for tile 912137
+2024-01-31 15:40:05,715 - INFO - Loading Lidar Json data for tile 42177
+2024-01-31 15:40:05,715 - ERROR - Json directory does not exist for tile 42177
+2024-01-31 15:40:05,716 - INFO - Loading Lidar Json data for tile 915117
+2024-01-31 15:40:05,716 - ERROR - Json directory does not exist for tile 915117
+2024-01-31 15:40:05,717 - INFO - Loading Lidar Json data for tile 5145
+2024-01-31 15:40:05,717 - ERROR - Json directory does not exist for tile 5145
+2024-01-31 15:40:05,718 - INFO - Loading Lidar Json data for tile 30230
+2024-01-31 15:40:05,718 - ERROR - Json directory does not exist for tile 30230
+2024-01-31 15:40:05,719 - INFO - Loading Lidar Json data for tile 42230
+2024-01-31 15:40:05,719 - ERROR - Json directory does not exist for tile 42230
+2024-01-31 15:40:05,720 - INFO - Loading Lidar Json data for tile 5147
+2024-01-31 15:40:05,720 - ERROR - Json directory does not exist for tile 5147
+2024-01-31 15:40:05,721 - INFO - Loading Lidar Json data for tile 42232
+2024-01-31 15:40:05,721 - ERROR - Json directory does not exist for tile 42232
+2024-01-31 15:40:05,723 - INFO - Loading Lidar Json data for tile 42235
+2024-01-31 15:40:05,724 - ERROR - Json directory does not exist for tile 42235
+2024-01-31 15:40:05,725 - INFO - Loading Lidar Json data for tile 915130
+2024-01-31 15:40:05,725 - ERROR - Json directory does not exist for tile 915130
+2024-01-31 15:40:05,727 - INFO - Loading Lidar Json data for tile 42237
+2024-01-31 15:40:05,727 - ERROR - Json directory does not exist for tile 42237
+2024-01-31 15:40:05,728 - INFO - Loading Lidar Json data for tile 42240
+2024-01-31 15:40:05,729 - ERROR - Json directory does not exist for tile 42240
+2024-01-31 15:40:05,730 - INFO - Loading Lidar Json data for tile 42260
+2024-01-31 15:40:05,730 - ERROR - Json directory does not exist for tile 42260
+2024-01-31 15:40:05,731 - INFO - Loading Lidar Json data for tile 45150
+2024-01-31 15:40:05,731 - ERROR - Json directory does not exist for tile 45150
+2024-01-31 15:40:05,732 - INFO - Loading Lidar Json data for tile 45152
+2024-01-31 15:40:05,732 - ERROR - Json directory does not exist for tile 45152
+2024-01-31 15:40:05,733 - INFO - Loading Lidar Json data for tile 45160
+2024-01-31 15:40:05,733 - ERROR - Json directory does not exist for tile 45160
+2024-01-31 15:40:05,734 - INFO - Loading Lidar Json data for tile 45162
+2024-01-31 15:40:05,734 - ERROR - Json directory does not exist for tile 45162
+2024-01-31 15:40:05,735 - INFO - Loading Lidar Json data for tile 915140
+2024-01-31 15:40:05,735 - ERROR - Json directory does not exist for tile 915140
+2024-01-31 15:40:05,736 - INFO - Loading Lidar Json data for tile 45165
+2024-01-31 15:40:05,736 - ERROR - Json directory does not exist for tile 45165
+2024-01-31 15:40:05,737 - INFO - Loading Lidar Json data for tile 45167
+2024-01-31 15:40:05,738 - ERROR - Json directory does not exist for tile 45167
+2024-01-31 15:40:05,739 - INFO - Loading Lidar Json data for tile 45170
+2024-01-31 15:40:05,739 - ERROR - Json directory does not exist for tile 45170
+2024-01-31 15:40:05,741 - INFO - Loading Lidar Json data for tile 917117
+2024-01-31 15:40:05,741 - ERROR - Json directory does not exist for tile 917117
+2024-01-31 15:40:05,743 - INFO - Loading Lidar Json data for tile 45175
+2024-01-31 15:40:05,743 - ERROR - Json directory does not exist for tile 45175
+2024-01-31 15:40:05,745 - INFO - Loading Lidar Json data for tile 45177
+2024-01-31 15:40:05,745 - ERROR - Json directory does not exist for tile 45177
+2024-01-31 15:40:05,746 - INFO - Loading Lidar Json data for tile 30265
+2024-01-31 15:40:05,746 - ERROR - Json directory does not exist for tile 30265
+2024-01-31 15:40:05,747 - INFO - Loading Lidar Json data for tile 32147
+2024-01-31 15:40:05,747 - ERROR - Json directory does not exist for tile 32147
+2024-01-31 15:40:05,748 - INFO - Loading Lidar Json data for tile 45230
+2024-01-31 15:40:05,748 - ERROR - Json directory does not exist for tile 45230
+2024-01-31 15:40:05,749 - INFO - Loading Lidar Json data for tile 32170
+2024-01-31 15:40:05,749 - ERROR - Json directory does not exist for tile 32170
+2024-01-31 15:40:05,750 - INFO - Loading Lidar Json data for tile 45232
+2024-01-31 15:40:05,750 - ERROR - Json directory does not exist for tile 45232
+2024-01-31 15:40:05,751 - INFO - Loading Lidar Json data for tile 45235
+2024-01-31 15:40:05,751 - ERROR - Json directory does not exist for tile 45235
+2024-01-31 15:40:05,752 - INFO - Loading Lidar Json data for tile 45237
+2024-01-31 15:40:05,752 - ERROR - Json directory does not exist for tile 45237
+2024-01-31 15:40:05,753 - INFO - Loading Lidar Json data for tile 45240
+2024-01-31 15:40:05,753 - ERROR - Json directory does not exist for tile 45240
+2024-01-31 15:40:05,754 - INFO - Loading Lidar Json data for tile 45242
+2024-01-31 15:40:05,754 - ERROR - Json directory does not exist for tile 45242
+2024-01-31 15:40:05,756 - INFO - Loading Lidar Json data for tile 45245
+2024-01-31 15:40:05,757 - ERROR - Json directory does not exist for tile 45245
+2024-01-31 15:40:05,765 - INFO - Loading Lidar Json data for tile 45255
+2024-01-31 15:40:05,765 - ERROR - Json directory does not exist for tile 45255
+2024-01-31 15:40:05,766 - INFO - Loading Lidar Json data for tile 45257
+2024-01-31 15:40:05,767 - ERROR - Json directory does not exist for tile 45257
+2024-01-31 15:40:05,767 - INFO - Loading Lidar Json data for tile 45260
+2024-01-31 15:40:05,768 - ERROR - Json directory does not exist for tile 45260
+2024-01-31 15:40:05,768 - INFO - Loading Lidar Json data for tile 47150
+2024-01-31 15:40:05,769 - ERROR - Json directory does not exist for tile 47150
+2024-01-31 15:40:05,769 - INFO - Loading Lidar Json data for tile 47152
+2024-01-31 15:40:05,770 - ERROR - Json directory does not exist for tile 47152
+2024-01-31 15:40:05,770 - INFO - Loading Lidar Json data for tile 917142
+2024-01-31 15:40:05,771 - ERROR - Json directory does not exist for tile 917142
+2024-01-31 15:40:05,773 - INFO - Loading Lidar Json data for tile 47165
+2024-01-31 15:40:05,774 - ERROR - Json directory does not exist for tile 47165
+2024-01-31 15:40:05,776 - INFO - Loading Lidar Json data for tile 47167
+2024-01-31 15:40:05,776 - ERROR - Json directory does not exist for tile 47167
+2024-01-31 15:40:05,777 - INFO - Loading Lidar Json data for tile 47170
+2024-01-31 15:40:05,778 - ERROR - Json directory does not exist for tile 47170
+2024-01-31 15:40:05,779 - INFO - Loading Lidar Json data for tile 920117
+2024-01-31 15:40:05,779 - ERROR - Json directory does not exist for tile 920117
+2024-01-31 15:40:05,781 - INFO - Loading Lidar Json data for tile 47172
+2024-01-31 15:40:05,781 - ERROR - Json directory does not exist for tile 47172
+2024-01-31 15:40:05,782 - INFO - Loading Lidar Json data for tile 47175
+2024-01-31 15:40:05,782 - ERROR - Json directory does not exist for tile 47175
+2024-01-31 15:40:05,783 - INFO - Loading Lidar Json data for tile 47219
+2024-01-31 15:40:05,783 - ERROR - Json directory does not exist for tile 47219
+2024-01-31 15:40:05,784 - INFO - Loading Lidar Json data for tile 47225
+2024-01-31 15:40:05,784 - ERROR - Json directory does not exist for tile 47225
+2024-01-31 15:40:05,785 - INFO - Loading Lidar Json data for tile 47227
+2024-01-31 15:40:05,785 - ERROR - Json directory does not exist for tile 47227
+2024-01-31 15:40:05,786 - INFO - Loading Lidar Json data for tile 47230
+2024-01-31 15:40:05,787 - ERROR - Json directory does not exist for tile 47230
+2024-01-31 15:40:05,788 - INFO - Loading Lidar Json data for tile 47232
+2024-01-31 15:40:05,788 - ERROR - Json directory does not exist for tile 47232
+2024-01-31 15:40:05,790 - INFO - Loading Lidar Json data for tile 47242
+2024-01-31 15:40:05,790 - ERROR - Json directory does not exist for tile 47242
+2024-01-31 15:40:05,792 - INFO - Loading Lidar Json data for tile 47250
+2024-01-31 15:40:05,793 - ERROR - Json directory does not exist for tile 47250
+2024-01-31 15:40:05,794 - INFO - Loading Lidar Json data for tile 47255
+2024-01-31 15:40:05,794 - ERROR - Json directory does not exist for tile 47255
+2024-01-31 15:40:05,795 - INFO - Loading Lidar Json data for tile 47257
+2024-01-31 15:40:05,796 - ERROR - Json directory does not exist for tile 47257
+2024-01-31 15:40:05,796 - INFO - Loading Lidar Json data for tile 990197
+2024-01-31 15:40:05,797 - ERROR - Json directory does not exist for tile 990197
+2024-01-31 15:40:05,797 - INFO - Loading Lidar Json data for tile 920142
+2024-01-31 15:40:05,798 - ERROR - Json directory does not exist for tile 920142
+2024-01-31 15:40:05,798 - INFO - Loading Lidar Json data for tile 922120
+2024-01-31 15:40:05,798 - ERROR - Json directory does not exist for tile 922120
+2024-01-31 15:40:05,799 - INFO - Loading Lidar Json data for tile 32232
+2024-01-31 15:40:05,799 - ERROR - Json directory does not exist for tile 32232
+2024-01-31 15:40:05,801 - INFO - Loading Lidar Json data for tile 922142
+2024-01-31 15:40:05,801 - ERROR - Json directory does not exist for tile 922142
+2024-01-31 15:40:05,802 - INFO - Loading Lidar Json data for tile 922145
+2024-01-31 15:40:05,802 - ERROR - Json directory does not exist for tile 922145
+2024-01-31 15:40:05,803 - INFO - Loading Lidar Json data for tile 925120
+2024-01-31 15:40:05,803 - ERROR - Json directory does not exist for tile 925120
+2024-01-31 15:40:05,805 - INFO - Loading Lidar Json data for tile 990217
+2024-01-31 15:40:05,805 - ERROR - Json directory does not exist for tile 990217
+2024-01-31 15:40:05,807 - INFO - Loading Lidar Json data for tile 925150
+2024-01-31 15:40:05,808 - ERROR - Json directory does not exist for tile 925150
+2024-01-31 15:40:05,809 - INFO - Loading Lidar Json data for tile 925152
+2024-01-31 15:40:05,809 - ERROR - Json directory does not exist for tile 925152
+2024-01-31 15:40:05,811 - INFO - Loading Lidar Json data for tile 925155
+2024-01-31 15:40:05,811 - ERROR - Json directory does not exist for tile 925155
+2024-01-31 15:40:05,812 - INFO - Loading Lidar Json data for tile 925157
+2024-01-31 15:40:05,812 - ERROR - Json directory does not exist for tile 925157
+2024-01-31 15:40:05,813 - INFO - Loading Lidar Json data for tile 925160
+2024-01-31 15:40:05,814 - ERROR - Json directory does not exist for tile 925160
+2024-01-31 15:40:05,815 - INFO - Loading Lidar Json data for tile 925162
+2024-01-31 15:40:05,815 - ERROR - Json directory does not exist for tile 925162
+2024-01-31 15:40:05,816 - INFO - Loading Lidar Json data for tile 925165
+2024-01-31 15:40:05,816 - ERROR - Json directory does not exist for tile 925165
+2024-01-31 15:40:05,817 - INFO - Loading Lidar Json data for tile 927120
+2024-01-31 15:40:05,817 - ERROR - Json directory does not exist for tile 927120
+2024-01-31 15:40:05,818 - INFO - Loading Lidar Json data for tile 927122
+2024-01-31 15:40:05,818 - ERROR - Json directory does not exist for tile 927122
+2024-01-31 15:40:05,819 - INFO - Loading Lidar Json data for tile 992177
+2024-01-31 15:40:05,819 - ERROR - Json directory does not exist for tile 992177
+2024-01-31 15:40:05,820 - INFO - Loading Lidar Json data for tile 992180
+2024-01-31 15:40:05,820 - ERROR - Json directory does not exist for tile 992180
+2024-01-31 15:40:05,822 - INFO - Loading Lidar Json data for tile 927145
+2024-01-31 15:40:05,823 - ERROR - Json directory does not exist for tile 927145
+2024-01-31 15:40:05,825 - INFO - Loading Lidar Json data for tile 927157
+2024-01-31 15:40:05,825 - ERROR - Json directory does not exist for tile 927157
+2024-01-31 15:40:05,826 - INFO - Loading Lidar Json data for tile 930120
+2024-01-31 15:40:05,826 - ERROR - Json directory does not exist for tile 930120
+2024-01-31 15:40:05,828 - INFO - Loading Lidar Json data for tile 930122
+2024-01-31 15:40:05,828 - ERROR - Json directory does not exist for tile 930122
+2024-01-31 15:40:05,830 - INFO - Loading Lidar Json data for tile 992202
+2024-01-31 15:40:05,830 - ERROR - Json directory does not exist for tile 992202
+2024-01-31 15:40:05,832 - INFO - Loading Lidar Json data for tile 992205
+2024-01-31 15:40:05,832 - ERROR - Json directory does not exist for tile 992205
+2024-01-31 15:40:05,833 - INFO - Loading Lidar Json data for tile 992207
+2024-01-31 15:40:05,833 - ERROR - Json directory does not exist for tile 992207
+2024-01-31 15:40:05,834 - INFO - Loading Lidar Json data for tile 930147
+2024-01-31 15:40:05,834 - ERROR - Json directory does not exist for tile 930147
+2024-01-31 15:40:05,836 - INFO - Loading Lidar Json data for tile 992220
+2024-01-31 15:40:05,836 - ERROR - Json directory does not exist for tile 992220
+2024-01-31 15:40:05,837 - INFO - Loading Lidar Json data for tile 992225
+2024-01-31 15:40:05,837 - ERROR - Json directory does not exist for tile 992225
+2024-01-31 15:40:05,839 - INFO - Loading Lidar Json data for tile 932122
+2024-01-31 15:40:05,840 - ERROR - Json directory does not exist for tile 932122
+2024-01-31 15:40:05,842 - INFO - Loading Lidar Json data for tile 932125
+2024-01-31 15:40:05,842 - ERROR - Json directory does not exist for tile 932125
+2024-01-31 15:40:05,843 - INFO - Loading Lidar Json data for tile 992237
+2024-01-31 15:40:05,844 - ERROR - Json directory does not exist for tile 992237
+2024-01-31 15:40:05,845 - INFO - Loading Lidar Json data for tile 995145
+2024-01-31 15:40:05,846 - ERROR - Json directory does not exist for tile 995145
+2024-01-31 15:40:05,847 - INFO - Loading Lidar Json data for tile 932165
+2024-01-31 15:40:05,847 - ERROR - Json directory does not exist for tile 932165
+2024-01-31 15:40:05,848 - INFO - Loading Lidar Json data for tile 932175
+2024-01-31 15:40:05,848 - ERROR - Json directory does not exist for tile 932175
+2024-01-31 15:40:05,849 - INFO - Loading Lidar Json data for tile 935125
+2024-01-31 15:40:05,849 - ERROR - Json directory does not exist for tile 935125
+2024-01-31 15:40:05,850 - INFO - Loading Lidar Json data for tile 935130
+2024-01-31 15:40:05,850 - ERROR - Json directory does not exist for tile 935130
+2024-01-31 15:40:05,851 - INFO - Loading Lidar Json data for tile 935152
+2024-01-31 15:40:05,852 - ERROR - Json directory does not exist for tile 935152
+2024-01-31 15:40:05,853 - INFO - Loading Lidar Json data for tile 35147
+2024-01-31 15:40:05,853 - ERROR - Json directory does not exist for tile 35147
+2024-01-31 15:40:05,854 - INFO - Loading Lidar Json data for tile 935175
+2024-01-31 15:40:05,854 - ERROR - Json directory does not exist for tile 935175
+2024-01-31 15:40:05,855 - INFO - Loading Lidar Json data for tile 937125
+2024-01-31 15:40:05,856 - ERROR - Json directory does not exist for tile 937125
+2024-01-31 15:40:05,858 - INFO - Loading Lidar Json data for tile 937127
+2024-01-31 15:40:05,858 - ERROR - Json directory does not exist for tile 937127
+2024-01-31 15:40:05,860 - INFO - Loading Lidar Json data for tile 5262
+2024-01-31 15:40:05,860 - ERROR - Json directory does not exist for tile 5262
+2024-01-31 15:40:05,861 - INFO - Loading Lidar Json data for tile 937145
+2024-01-31 15:40:05,862 - ERROR - Json directory does not exist for tile 937145
+2024-01-31 15:40:05,863 - INFO - Loading Lidar Json data for tile 7137
+2024-01-31 15:40:05,863 - ERROR - Json directory does not exist for tile 7137
+2024-01-31 15:40:05,863 - INFO - Loading Lidar Json data for tile 995222
+2024-01-31 15:40:05,864 - ERROR - Json directory does not exist for tile 995222
+2024-01-31 15:40:05,864 - INFO - Loading Lidar Json data for tile 995230
+2024-01-31 15:40:05,864 - ERROR - Json directory does not exist for tile 995230
+2024-01-31 15:40:05,865 - INFO - Loading Lidar Json data for tile 940127
+2024-01-31 15:40:05,865 - ERROR - Json directory does not exist for tile 940127
+2024-01-31 15:40:05,866 - INFO - Loading Lidar Json data for tile 7145
+2024-01-31 15:40:05,866 - ERROR - Json directory does not exist for tile 7145
+2024-01-31 15:40:05,867 - INFO - Loading Lidar Json data for tile 995240
+2024-01-31 15:40:05,867 - ERROR - Json directory does not exist for tile 995240
+2024-01-31 15:40:05,868 - INFO - Loading Lidar Json data for tile 995242
+2024-01-31 15:40:05,868 - ERROR - Json directory does not exist for tile 995242
+2024-01-31 15:40:05,869 - INFO - Loading Lidar Json data for tile 7147
+2024-01-31 15:40:05,869 - ERROR - Json directory does not exist for tile 7147
+2024-01-31 15:40:05,870 - INFO - Loading Lidar Json data for tile 997135
+2024-01-31 15:40:05,870 - ERROR - Json directory does not exist for tile 997135
+2024-01-31 15:40:05,872 - INFO - Loading Lidar Json data for tile 940145
+2024-01-31 15:40:05,873 - ERROR - Json directory does not exist for tile 940145
+2024-01-31 15:40:05,874 - INFO - Loading Lidar Json data for tile 997137
+2024-01-31 15:40:05,874 - ERROR - Json directory does not exist for tile 997137
+2024-01-31 15:40:05,875 - INFO - Loading Lidar Json data for tile 997140
+2024-01-31 15:40:05,876 - ERROR - Json directory does not exist for tile 997140
+2024-01-31 15:40:05,877 - INFO - Loading Lidar Json data for tile 997142
+2024-01-31 15:40:05,877 - ERROR - Json directory does not exist for tile 997142
+2024-01-31 15:40:05,878 - INFO - Loading Lidar Json data for tile 997145
+2024-01-31 15:40:05,879 - ERROR - Json directory does not exist for tile 997145
+2024-01-31 15:40:05,879 - INFO - Loading Lidar Json data for tile 35162
+2024-01-31 15:40:05,880 - ERROR - Json directory does not exist for tile 35162
+2024-01-31 15:40:05,880 - INFO - Loading Lidar Json data for tile 942127
+2024-01-31 15:40:05,881 - ERROR - Json directory does not exist for tile 942127
+2024-01-31 15:40:05,881 - INFO - Loading Lidar Json data for tile 942130
+2024-01-31 15:40:05,882 - ERROR - Json directory does not exist for tile 942130
+2024-01-31 15:40:05,883 - INFO - Loading Lidar Json data for tile 35165
+2024-01-31 15:40:05,883 - ERROR - Json directory does not exist for tile 35165
+2024-01-31 15:40:05,884 - INFO - Loading Lidar Json data for tile 35167
+2024-01-31 15:40:05,884 - ERROR - Json directory does not exist for tile 35167
+2024-01-31 15:40:05,885 - INFO - Loading Lidar Json data for tile 945127
+2024-01-31 15:40:05,885 - ERROR - Json directory does not exist for tile 945127
+2024-01-31 15:40:05,887 - INFO - Loading Lidar Json data for tile 945130
+2024-01-31 15:40:05,887 - ERROR - Json directory does not exist for tile 945130
+2024-01-31 15:40:05,889 - INFO - Loading Lidar Json data for tile 35170
+2024-01-31 15:40:05,889 - ERROR - Json directory does not exist for tile 35170
+2024-01-31 15:40:05,891 - INFO - Loading Lidar Json data for tile 35172
+2024-01-31 15:40:05,891 - ERROR - Json directory does not exist for tile 35172
+2024-01-31 15:40:05,892 - INFO - Loading Lidar Json data for tile 947127
+2024-01-31 15:40:05,892 - ERROR - Json directory does not exist for tile 947127
+2024-01-31 15:40:05,894 - INFO - Loading Lidar Json data for tile 947130
+2024-01-31 15:40:05,894 - ERROR - Json directory does not exist for tile 947130
+2024-01-31 15:40:05,895 - INFO - Loading Lidar Json data for tile 35175
+2024-01-31 15:40:05,895 - ERROR - Json directory does not exist for tile 35175
+2024-01-31 15:40:05,896 - INFO - Loading Lidar Json data for tile 997212
+2024-01-31 15:44:37,282 - INFO - New GeoJSON for tile index 164 tile_id 997212 saved
+2024-01-31 15:44:39,673 - INFO - Loading Lidar Json data for tile 997215
+2024-01-31 15:44:39,674 - ERROR - Json directory does not exist for tile 997215
+2024-01-31 15:44:39,677 - INFO - Loading Lidar Json data for tile 997217
+2024-01-31 15:44:39,677 - ERROR - Json directory does not exist for tile 997217
+2024-01-31 15:44:39,679 - INFO - Loading Lidar Json data for tile 950130
+2024-01-31 15:44:39,682 - ERROR - Json directory does not exist for tile 950130
+2024-01-31 15:44:39,684 - INFO - Loading Lidar Json data for tile 950132
+2024-01-31 15:44:39,686 - ERROR - Json directory does not exist for tile 950132
+2024-01-31 15:44:39,688 - INFO - Loading Lidar Json data for tile 950135
+2024-01-31 15:44:39,689 - ERROR - Json directory does not exist for tile 950135
+2024-01-31 15:44:39,691 - INFO - Loading Lidar Json data for tile 997227
+2024-01-31 15:44:39,692 - ERROR - Json directory does not exist for tile 997227
+2024-01-31 15:44:39,694 - INFO - Loading Lidar Json data for tile 950155
+2024-01-31 15:50:26,216 - INFO - New GeoJSON for tile index 171 tile_id 950155 saved
+2024-01-31 15:50:28,721 - INFO - Loading Lidar Json data for tile 7210
+2024-01-31 15:53:42,483 - INFO - New GeoJSON for tile index 172 tile_id 7210 saved
+2024-01-31 15:53:44,130 - INFO - Loading Lidar Json data for tile 997245
+2024-01-31 15:53:44,131 - ERROR - Json directory does not exist for tile 997245
+2024-01-31 15:53:44,134 - INFO - Loading Lidar Json data for tile 950170
+2024-01-31 15:55:39,749 - INFO - New GeoJSON for tile index 174 tile_id 950170 saved
+2024-01-31 15:55:40,818 - INFO - Loading Lidar Json data for tile 7212
+2024-01-31 15:58:33,109 - INFO - New GeoJSON for tile index 175 tile_id 7212 saved
+2024-01-31 15:58:34,134 - INFO - Loading Lidar Json data for tile 950172
+2024-01-31 15:59:53,355 - INFO - New GeoJSON for tile index 176 tile_id 950172 saved
+2024-01-31 15:59:53,899 - INFO - Loading Lidar Json data for tile 952132
+2024-01-31 15:59:53,901 - ERROR - Json directory does not exist for tile 952132
+2024-01-31 15:59:53,904 - INFO - Loading Lidar Json data for tile 952135
+2024-01-31 15:59:53,905 - ERROR - Json directory does not exist for tile 952135
+2024-01-31 15:59:53,907 - INFO - Loading Lidar Json data for tile 952175
+2024-01-31 15:59:53,908 - ERROR - Json directory does not exist for tile 952175
+2024-01-31 15:59:53,910 - INFO - Loading Lidar Json data for tile 955135
+2024-01-31 15:59:53,912 - ERROR - Json directory does not exist for tile 955135
+2024-01-31 15:59:53,914 - INFO - Loading Lidar Json data for tile 955137
+2024-01-31 15:59:53,916 - ERROR - Json directory does not exist for tile 955137
+2024-01-31 15:59:53,917 - INFO - Loading Lidar Json data for tile 955175
+2024-01-31 15:59:53,919 - ERROR - Json directory does not exist for tile 955175
+2024-01-31 15:59:53,921 - INFO - Loading Lidar Json data for tile 957137
+2024-01-31 15:59:53,922 - ERROR - Json directory does not exist for tile 957137
+2024-01-31 15:59:53,924 - INFO - Loading Lidar Json data for tile 957140
+2024-01-31 15:59:53,926 - ERROR - Json directory does not exist for tile 957140
+2024-01-31 15:59:53,927 - INFO - Loading Lidar Json data for tile 7270
+2024-01-31 15:59:53,928 - ERROR - Json directory does not exist for tile 7270
+2024-01-31 15:59:53,930 - INFO - Loading Lidar Json data for tile 957167
+2024-01-31 15:59:53,931 - ERROR - Json directory does not exist for tile 957167
+2024-01-31 15:59:53,932 - INFO - Loading Lidar Json data for tile 50150
+2024-01-31 15:59:53,933 - ERROR - Json directory does not exist for tile 50150
+2024-01-31 15:59:53,935 - INFO - Loading Lidar Json data for tile 50152
+2024-01-31 15:59:53,936 - ERROR - Json directory does not exist for tile 50152
+2024-01-31 15:59:53,939 - INFO - Loading Lidar Json data for tile 960137
+2024-01-31 15:59:53,940 - ERROR - Json directory does not exist for tile 960137
+2024-01-31 15:59:53,943 - INFO - Loading Lidar Json data for tile 960140
+2024-01-31 15:59:53,944 - ERROR - Json directory does not exist for tile 960140
+2024-01-31 15:59:53,945 - INFO - Loading Lidar Json data for tile 960142
+2024-01-31 15:59:53,947 - ERROR - Json directory does not exist for tile 960142
+2024-01-31 15:59:53,949 - INFO - Loading Lidar Json data for tile 960145
+2024-01-31 15:59:53,950 - ERROR - Json directory does not exist for tile 960145
+2024-01-31 15:59:53,952 - INFO - Loading Lidar Json data for tile 50170
+2024-01-31 15:59:53,954 - ERROR - Json directory does not exist for tile 50170
+2024-01-31 15:59:53,955 - INFO - Loading Lidar Json data for tile 50172
+2024-01-31 15:59:53,957 - ERROR - Json directory does not exist for tile 50172
+2024-01-31 15:59:53,958 - INFO - Loading Lidar Json data for tile 962140
+2024-01-31 15:59:53,959 - ERROR - Json directory does not exist for tile 962140
+2024-01-31 15:59:53,960 - INFO - Loading Lidar Json data for tile 962142
+2024-01-31 15:59:53,962 - ERROR - Json directory does not exist for tile 962142
+2024-01-31 15:59:53,963 - INFO - Loading Lidar Json data for tile 50175
+2024-01-31 15:59:53,964 - ERROR - Json directory does not exist for tile 50175
+2024-01-31 15:59:53,967 - INFO - Loading Lidar Json data for tile 962145
+2024-01-31 15:59:53,969 - ERROR - Json directory does not exist for tile 962145
+2024-01-31 15:59:53,971 - INFO - Loading Lidar Json data for tile 35230
+2024-01-31 15:59:53,972 - ERROR - Json directory does not exist for tile 35230
+2024-01-31 15:59:53,974 - INFO - Loading Lidar Json data for tile 962147
+2024-01-31 15:59:53,975 - ERROR - Json directory does not exist for tile 962147
+2024-01-31 15:59:53,976 - INFO - Loading Lidar Json data for tile 35232
+2024-01-31 15:59:53,977 - ERROR - Json directory does not exist for tile 35232
+2024-01-31 15:59:53,979 - INFO - Loading Lidar Json data for tile 962175
+2024-01-31 15:59:53,980 - ERROR - Json directory does not exist for tile 962175
+2024-01-31 15:59:53,982 - INFO - Loading Lidar Json data for tile 965140
+2024-01-31 15:59:53,983 - ERROR - Json directory does not exist for tile 965140
+2024-01-31 15:59:53,986 - INFO - Loading Lidar Json data for tile 965142
+2024-01-31 15:59:53,987 - ERROR - Json directory does not exist for tile 965142
+2024-01-31 15:59:53,989 - INFO - Loading Lidar Json data for tile 965145
+2024-01-31 15:59:53,990 - ERROR - Json directory does not exist for tile 965145
+2024-01-31 15:59:53,992 - INFO - Loading Lidar Json data for tile 965147
+2024-01-31 15:59:53,993 - ERROR - Json directory does not exist for tile 965147
+2024-01-31 15:59:53,995 - INFO - Loading Lidar Json data for tile 965150
+2024-01-31 15:59:53,996 - ERROR - Json directory does not exist for tile 965150
+2024-01-31 15:59:53,997 - INFO - Loading Lidar Json data for tile 35242
+2024-01-31 15:59:53,998 - ERROR - Json directory does not exist for tile 35242
+2024-01-31 15:59:54,000 - INFO - Loading Lidar Json data for tile 965165
+2024-01-31 15:59:54,002 - ERROR - Json directory does not exist for tile 965165
+2024-01-31 15:59:54,003 - INFO - Loading Lidar Json data for tile 965167
+2024-01-31 15:59:54,004 - ERROR - Json directory does not exist for tile 965167
+2024-01-31 15:59:54,007 - INFO - Loading Lidar Json data for tile 965170
+2024-01-31 15:59:54,008 - ERROR - Json directory does not exist for tile 965170
+2024-01-31 15:59:54,010 - INFO - Loading Lidar Json data for tile 965172
+2024-01-31 15:59:54,011 - ERROR - Json directory does not exist for tile 965172
+2024-01-31 15:59:54,012 - INFO - Loading Lidar Json data for tile 965175
+2024-01-31 15:59:54,013 - ERROR - Json directory does not exist for tile 965175
+2024-01-31 15:59:54,015 - INFO - Loading Lidar Json data for tile 967142
+2024-01-31 15:59:54,016 - ERROR - Json directory does not exist for tile 967142
+2024-01-31 15:59:54,018 - INFO - Loading Lidar Json data for tile 967145
+2024-01-31 15:59:54,019 - ERROR - Json directory does not exist for tile 967145
+2024-01-31 15:59:54,021 - INFO - Loading Lidar Json data for tile 967147
+2024-01-31 15:59:54,022 - ERROR - Json directory does not exist for tile 967147
+2024-01-31 15:59:54,024 - INFO - Loading Lidar Json data for tile 967150
+2024-01-31 15:59:54,025 - ERROR - Json directory does not exist for tile 967150
+2024-01-31 15:59:54,027 - INFO - Loading Lidar Json data for tile 967152
+2024-01-31 15:59:54,028 - ERROR - Json directory does not exist for tile 967152
+2024-01-31 15:59:54,029 - INFO - Loading Lidar Json data for tile 967162
+2024-01-31 15:59:54,030 - ERROR - Json directory does not exist for tile 967162
+2024-01-31 15:59:54,032 - INFO - Loading Lidar Json data for tile 35252
+2024-01-31 15:59:54,033 - ERROR - Json directory does not exist for tile 35252
+2024-01-31 15:59:54,036 - INFO - Loading Lidar Json data for tile 967165
+2024-01-31 15:59:54,037 - ERROR - Json directory does not exist for tile 967165
+2024-01-31 15:59:54,039 - INFO - Loading Lidar Json data for tile 970142
+2024-01-31 15:59:54,041 - ERROR - Json directory does not exist for tile 970142
+2024-01-31 15:59:54,042 - INFO - Loading Lidar Json data for tile 970145
+2024-01-31 15:59:54,043 - ERROR - Json directory does not exist for tile 970145
+2024-01-31 15:59:54,045 - INFO - Loading Lidar Json data for tile 50225
+2024-01-31 15:59:54,046 - ERROR - Json directory does not exist for tile 50225
+2024-01-31 15:59:54,047 - INFO - Loading Lidar Json data for tile 970147
+2024-01-31 15:59:54,048 - ERROR - Json directory does not exist for tile 970147
+2024-01-31 15:59:54,050 - INFO - Loading Lidar Json data for tile 970150
+2024-01-31 15:59:54,052 - ERROR - Json directory does not exist for tile 970150
+2024-01-31 15:59:54,054 - INFO - Loading Lidar Json data for tile 50227
+2024-01-31 15:59:54,055 - ERROR - Json directory does not exist for tile 50227
+2024-01-31 15:59:54,057 - INFO - Loading Lidar Json data for tile 970152
+2024-01-31 15:59:54,057 - ERROR - Json directory does not exist for tile 970152
+2024-01-31 15:59:54,060 - INFO - Loading Lidar Json data for tile 970155
+2024-01-31 15:59:54,061 - ERROR - Json directory does not exist for tile 970155
+2024-01-31 15:59:54,063 - INFO - Loading Lidar Json data for tile 50245
+2024-01-31 15:59:54,064 - ERROR - Json directory does not exist for tile 50245
+2024-01-31 15:59:54,066 - INFO - Loading Lidar Json data for tile 970157
+2024-01-31 15:59:54,067 - ERROR - Json directory does not exist for tile 970157
+2024-01-31 15:59:54,069 - INFO - Loading Lidar Json data for tile 970160
+2024-01-31 15:59:54,070 - ERROR - Json directory does not exist for tile 970160
+2024-01-31 15:59:54,072 - INFO - Loading Lidar Json data for tile 50247
+2024-01-31 15:59:54,073 - ERROR - Json directory does not exist for tile 50247
+2024-01-31 15:59:54,074 - INFO - Loading Lidar Json data for tile 970162
+2024-01-31 15:59:54,076 - ERROR - Json directory does not exist for tile 970162
+2024-01-31 15:59:54,078 - INFO - Loading Lidar Json data for tile 970165
+2024-01-31 15:59:54,079 - ERROR - Json directory does not exist for tile 970165
+2024-01-31 15:59:54,080 - INFO - Loading Lidar Json data for tile 50250
+2024-01-31 15:59:54,088 - ERROR - Json directory does not exist for tile 50250
+2024-01-31 15:59:54,090 - INFO - Loading Lidar Json data for tile 970167
+2024-01-31 15:59:54,092 - ERROR - Json directory does not exist for tile 970167
+2024-01-31 15:59:54,093 - INFO - Loading Lidar Json data for tile 970170
+2024-01-31 15:59:54,094 - ERROR - Json directory does not exist for tile 970170
+2024-01-31 15:59:54,096 - INFO - Loading Lidar Json data for tile 50252
+2024-01-31 15:59:54,097 - ERROR - Json directory does not exist for tile 50252
+2024-01-31 15:59:54,099 - INFO - Loading Lidar Json data for tile 970172
+2024-01-31 15:59:54,100 - ERROR - Json directory does not exist for tile 970172
+2024-01-31 15:59:54,102 - INFO - Loading Lidar Json data for tile 970187
+2024-01-31 15:59:54,103 - ERROR - Json directory does not exist for tile 970187
+2024-01-31 15:59:54,105 - INFO - Loading Lidar Json data for tile 50255
+2024-01-31 15:59:54,106 - ERROR - Json directory does not exist for tile 50255
+2024-01-31 15:59:54,108 - INFO - Loading Lidar Json data for tile 970190
+2024-01-31 15:59:54,109 - ERROR - Json directory does not exist for tile 970190
+2024-01-31 15:59:54,111 - INFO - Loading Lidar Json data for tile 970192
+2024-01-31 15:59:54,112 - ERROR - Json directory does not exist for tile 970192
+2024-01-31 15:59:54,113 - INFO - Loading Lidar Json data for tile 50257
+2024-01-31 15:59:54,114 - ERROR - Json directory does not exist for tile 50257
+2024-01-31 15:59:54,116 - INFO - Loading Lidar Json data for tile 972142
+2024-01-31 15:59:54,117 - ERROR - Json directory does not exist for tile 972142
+2024-01-31 15:59:54,119 - INFO - Loading Lidar Json data for tile 972145
+2024-01-31 15:59:54,121 - ERROR - Json directory does not exist for tile 972145
+2024-01-31 15:59:54,123 - INFO - Loading Lidar Json data for tile 52152
+2024-01-31 15:59:54,124 - ERROR - Json directory does not exist for tile 52152
+2024-01-31 15:59:54,127 - INFO - Loading Lidar Json data for tile 972155
+2024-01-31 15:59:54,129 - ERROR - Json directory does not exist for tile 972155
+2024-01-31 15:59:54,131 - INFO - Loading Lidar Json data for tile 37147
+2024-01-31 15:59:54,132 - ERROR - Json directory does not exist for tile 37147
+2024-01-31 15:59:54,134 - INFO - Loading Lidar Json data for tile 972157
+2024-01-31 15:59:54,137 - ERROR - Json directory does not exist for tile 972157
+2024-01-31 15:59:54,139 - INFO - Loading Lidar Json data for tile 972160
+2024-01-31 15:59:54,140 - ERROR - Json directory does not exist for tile 972160
+2024-01-31 15:59:54,143 - INFO - Loading Lidar Json data for tile 37150
+2024-01-31 15:59:54,145 - ERROR - Json directory does not exist for tile 37150
+2024-01-31 15:59:54,147 - INFO - Loading Lidar Json data for tile 972175
+2024-01-31 15:59:54,149 - ERROR - Json directory does not exist for tile 972175
+2024-01-31 15:59:54,150 - INFO - Loading Lidar Json data for tile 972177
+2024-01-31 15:59:54,152 - ERROR - Json directory does not exist for tile 972177
+2024-01-31 15:59:54,154 - INFO - Loading Lidar Json data for tile 972180
+2024-01-31 15:59:54,154 - ERROR - Json directory does not exist for tile 972180
+2024-01-31 15:59:54,158 - INFO - Loading Lidar Json data for tile 972190
+2024-01-31 15:59:54,159 - ERROR - Json directory does not exist for tile 972190
+2024-01-31 15:59:54,161 - INFO - Loading Lidar Json data for tile 975150
+2024-01-31 15:59:54,162 - ERROR - Json directory does not exist for tile 975150
+2024-01-31 15:59:54,164 - INFO - Loading Lidar Json data for tile 975152
+2024-01-31 15:59:54,166 - ERROR - Json directory does not exist for tile 975152
+2024-01-31 15:59:54,168 - INFO - Loading Lidar Json data for tile 975155
+2024-01-31 15:59:54,169 - ERROR - Json directory does not exist for tile 975155
+2024-01-31 15:59:54,171 - INFO - Loading Lidar Json data for tile 37157
+2024-01-31 15:59:54,172 - ERROR - Json directory does not exist for tile 37157
+2024-01-31 15:59:54,174 - INFO - Loading Lidar Json data for tile 37160
+2024-01-31 15:59:54,175 - ERROR - Json directory does not exist for tile 37160
+2024-01-31 15:59:54,177 - INFO - Loading Lidar Json data for tile 975177
+2024-01-31 15:59:54,179 - ERROR - Json directory does not exist for tile 975177
+2024-01-31 15:59:54,180 - INFO - Loading Lidar Json data for tile 975180
+2024-01-31 15:59:54,181 - ERROR - Json directory does not exist for tile 975180
+2024-01-31 15:59:54,183 - INFO - Loading Lidar Json data for tile 975182
+2024-01-31 15:59:54,184 - ERROR - Json directory does not exist for tile 975182
+2024-01-31 15:59:54,186 - INFO - Loading Lidar Json data for tile 975185
+2024-01-31 15:59:54,187 - ERROR - Json directory does not exist for tile 975185
+2024-01-31 15:59:54,189 - INFO - Loading Lidar Json data for tile 975187
+2024-01-31 15:59:54,191 - ERROR - Json directory does not exist for tile 975187
+2024-01-31 15:59:54,193 - INFO - Loading Lidar Json data for tile 37240
+2024-01-31 15:59:54,194 - ERROR - Json directory does not exist for tile 37240
+2024-01-31 15:59:54,196 - INFO - Loading Lidar Json data for tile 975190
+2024-01-31 15:59:54,197 - ERROR - Json directory does not exist for tile 975190
+2024-01-31 15:59:54,199 - INFO - Loading Lidar Json data for tile 977145
+2024-01-31 15:59:54,201 - ERROR - Json directory does not exist for tile 977145
+2024-01-31 15:59:54,203 - INFO - Loading Lidar Json data for tile 977147
+2024-01-31 15:59:54,204 - ERROR - Json directory does not exist for tile 977147
+2024-01-31 15:59:54,207 - INFO - Loading Lidar Json data for tile 977150
+2024-01-31 15:59:54,208 - ERROR - Json directory does not exist for tile 977150
+2024-01-31 15:59:54,211 - INFO - Loading Lidar Json data for tile 977152
+2024-01-31 15:59:54,212 - ERROR - Json directory does not exist for tile 977152
+2024-01-31 15:59:54,214 - INFO - Loading Lidar Json data for tile 977155
+2024-01-31 15:59:54,215 - ERROR - Json directory does not exist for tile 977155
+2024-01-31 15:59:54,217 - INFO - Loading Lidar Json data for tile 977192
+2024-01-31 15:59:54,219 - ERROR - Json directory does not exist for tile 977192
+2024-01-31 15:59:54,222 - INFO - Loading Lidar Json data for tile 977195
+2024-01-31 15:59:54,223 - ERROR - Json directory does not exist for tile 977195
+2024-01-31 15:59:54,225 - INFO - Loading Lidar Json data for tile 977200
+2024-01-31 15:59:54,226 - ERROR - Json directory does not exist for tile 977200
+2024-01-31 15:59:54,227 - INFO - Loading Lidar Json data for tile 977202
+2024-01-31 15:59:54,229 - ERROR - Json directory does not exist for tile 977202
+2024-01-31 15:59:54,230 - INFO - Loading Lidar Json data for tile 977205
+2024-01-31 15:59:54,231 - ERROR - Json directory does not exist for tile 977205
+2024-01-31 15:59:54,233 - INFO - Loading Lidar Json data for tile 980145
+2024-01-31 15:59:54,235 - ERROR - Json directory does not exist for tile 980145
+2024-01-31 15:59:54,238 - INFO - Loading Lidar Json data for tile 52225
+2024-01-31 15:59:54,240 - ERROR - Json directory does not exist for tile 52225
+2024-01-31 15:59:54,242 - INFO - Loading Lidar Json data for tile 980152
+2024-01-31 15:59:54,243 - ERROR - Json directory does not exist for tile 980152
+2024-01-31 15:59:54,245 - INFO - Loading Lidar Json data for tile 980155
+2024-01-31 15:59:54,246 - ERROR - Json directory does not exist for tile 980155
+2024-01-31 15:59:54,247 - INFO - Loading Lidar Json data for tile 52250
+2024-01-31 15:59:54,249 - ERROR - Json directory does not exist for tile 52250
+2024-01-31 15:59:54,251 - INFO - Loading Lidar Json data for tile 52252
+2024-01-31 15:59:54,253 - ERROR - Json directory does not exist for tile 52252
+2024-01-31 15:59:54,256 - INFO - Loading Lidar Json data for tile 52255
+2024-01-31 15:59:54,257 - ERROR - Json directory does not exist for tile 52255
+2024-01-31 15:59:54,259 - INFO - Loading Lidar Json data for tile 52257
+2024-01-31 15:59:54,260 - ERROR - Json directory does not exist for tile 52257
+2024-01-31 15:59:54,262 - INFO - Loading Lidar Json data for tile 55162
+2024-01-31 15:59:54,264 - ERROR - Json directory does not exist for tile 55162
+2024-01-31 15:59:54,266 - INFO - Loading Lidar Json data for tile 980202
+2024-01-31 15:59:54,267 - ERROR - Json directory does not exist for tile 980202
+2024-01-31 15:59:54,269 - INFO - Loading Lidar Json data for tile 980207
+2024-01-31 15:59:54,270 - ERROR - Json directory does not exist for tile 980207
+2024-01-31 15:59:54,272 - INFO - Loading Lidar Json data for tile 980212
+2024-01-31 15:59:54,274 - ERROR - Json directory does not exist for tile 980212
+2024-01-31 15:59:54,275 - INFO - Loading Lidar Json data for tile 980215
+2024-01-31 15:59:54,277 - ERROR - Json directory does not exist for tile 980215
+2024-01-31 15:59:54,278 - INFO - Loading Lidar Json data for tile 982145
+2024-01-31 15:59:54,279 - ERROR - Json directory does not exist for tile 982145
+2024-01-31 15:59:54,282 - INFO - Loading Lidar Json data for tile 982210
+2024-01-31 15:59:54,283 - ERROR - Json directory does not exist for tile 982210
+2024-01-31 15:59:54,287 - INFO - Loading Lidar Json data for tile 982220
+2024-01-31 15:59:54,289 - ERROR - Json directory does not exist for tile 982220
+2024-01-31 15:59:54,291 - INFO - Loading Lidar Json data for tile 985145
+2024-01-31 15:59:54,292 - ERROR - Json directory does not exist for tile 985145
+2024-01-31 15:59:54,295 - INFO - Loading Lidar Json data for tile 57157
+2024-01-31 15:59:54,297 - ERROR - Json directory does not exist for tile 57157
+2024-01-31 15:59:54,299 - INFO - Loading Lidar Json data for tile 985175
+2024-01-31 15:59:54,301 - ERROR - Json directory does not exist for tile 985175
+2024-01-31 15:59:54,304 - INFO - Loading Lidar Json data for tile 985220
+2024-01-31 15:59:54,305 - ERROR - Json directory does not exist for tile 985220
+2024-01-31 15:59:54,307 - INFO - Loading Lidar Json data for tile 985222
+2024-01-31 15:59:54,308 - ERROR - Json directory does not exist for tile 985222
+2024-01-31 15:59:54,310 - INFO - Loading Lidar Json data for tile 985225
+2024-01-31 15:59:54,312 - ERROR - Json directory does not exist for tile 985225
+2024-01-31 15:59:54,313 - INFO - Loading Lidar Json data for tile 987145
+2024-01-31 15:59:54,315 - ERROR - Json directory does not exist for tile 987145
+2024-01-31 15:59:54,318 - INFO - Loading Lidar Json data for tile 60180
+2024-01-31 15:59:54,319 - ERROR - Json directory does not exist for tile 60180
+2024-01-31 15:59:54,322 - INFO - Loading Lidar Json data for tile 987195
+2024-01-31 15:59:54,324 - ERROR - Json directory does not exist for tile 987195
+2024-01-31 15:59:54,326 - INFO - Loading Lidar Json data for tile 987197
+2024-01-31 15:59:54,326 - ERROR - Json directory does not exist for tile 987197
+2024-01-31 15:59:54,328 - INFO - Loading Lidar Json data for tile 60197
+2024-01-31 15:59:54,330 - ERROR - Json directory does not exist for tile 60197
+2024-01-31 15:59:54,332 - INFO - Loading Lidar Json data for tile 62217
+2024-01-31 15:59:54,333 - ERROR - Json directory does not exist for tile 62217
+2024-01-31 15:59:54,336 - INFO - Loading Lidar Json data for tile 65215
+2024-01-31 15:59:54,337 - ERROR - Json directory does not exist for tile 65215
+2024-01-31 15:59:54,339 - INFO - Loading Lidar Json data for tile 67210
+2024-01-31 15:59:54,340 - ERROR - Json directory does not exist for tile 67210
