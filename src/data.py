@@ -61,36 +61,47 @@ import csv
 
 
 # get the tiles in tfb
-dir_path = 'TFb'
+dir_path = '/Volumes/Extreme SSD/TFb'
 tfb_list = [f for f in os.listdir(dir_path)]
-output_path = 'result/tfb_tileids.csv'
 
-with open(output_path, mode='w', newline='') as file:
+# output_path = 'result/tfb_tileids.csv'
+# with open(output_path, mode='w', newline='') as file:
+#     writer = csv.writer(file)
+#     for item in tfb_list:
+#         writer.writerow([item])
+
+# get the tiles in nyc 2021
+file_path = 'qgis/nyc2021_las_index.geojson'
+with open(file_path, 'r') as f:
+    geojson_data = json.load(f)
+tile_list = []
+for feature in geojson_data['features']:
+    tile_list.append(feature['properties']['LAS_ID'])
+
+# get the tiles with json 
+dir_path = '/Volumes/Extreme SSD/ZmatchNewResult'
+match_list = [x for x in dir_path if x.endswith('.geojson')]
+
+diff_notileid = [t for t in tile_list if t not in tfb_list]
+diff_nojsondata = [t for t in tfb_list if t not in match_list]
+
+output_path = 'result/diff_notileid.csv'
+with open(output_path, mode='w',newline='') as file:
     writer = csv.writer(file)
-    for item in tfb_list:
+    for item in diff_notileid:
         writer.writerow([item])
 
+output_path = 'result/diff_nojsondata.csv'
+with open(output_path, mode='w',newline='') as file:
+    writer = csv.writer(file)
+    for item in diff_nojsondata:
+        writer.writerow([item])
 
+'''
+nyc2021 > tfb > match
 
-# # get the tiles in nyc 2021
-# file_path = 'qgis/nyc2021_las_index.geojson'
-# with open(file_path, 'r') as f:
-#     geojson_data = json.load(f)
-# tile_list = []
-# for feature in geojson_data['features']:
-#     tile_list.append(feature['properties']['LAS_ID'])
+no such tile id folder: nyc2021 - tfb
+no such json data: tfb - match
 
-# # get the tiles with json 
-# dir_path = 'ZmatchNewResult'
-# match_list = [x for x in dir_path if x.endswith('.geojson')]
-
-# diff_nofolder = [t for t in tile_list if t not in tfb_list]
-
-# diff_nodata = [t for t in tile_list if t not in match_list]
-
-# output_path = 'result/diff_nodata.csv'
-# with open(output_path, mode='w',newline='') as file:
-#     writer = csv.writer(file)
-#     for item in diff_nodata:
-#         writer.writerow([item])
+'''
 
