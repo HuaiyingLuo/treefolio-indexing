@@ -1,0 +1,85 @@
+2024-03-27 13:48:54,378 - INFO - Start processing tile_id 167
+2024-03-27 13:48:54,378 - INFO - Loading Lidar Json data for tile 167
+2024-03-27 13:49:06,591 - INFO - Output size of load_json_files: 14360 bytes
+2024-03-27 13:49:09,007 - INFO - Output size of match_shade_data: 14360 bytes
+2024-03-27 13:49:35,690 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:49:35,845 - INFO - Output size of match_json_to_geojson: 14360 bytes
+2024-03-27 13:49:36,889 - INFO - Output size of construct_new_geojson: 1067442 bytes
+2024-03-27 13:49:37,689 - INFO - New GeoJSON for tile_id 167 saved
+2024-03-27 13:49:37,904 - INFO - Start processing tile_id .DS_Store
+2024-03-27 13:49:37,904 - INFO - Loading Lidar Json data for tile .DS_Store
+2024-03-27 13:49:37,904 - ERROR - Json directory does not exist for tile .DS_Store
+2024-03-27 13:49:37,904 - INFO - Output size of load_json_files: 16 bytes
+2024-03-27 13:49:37,904 - INFO - Start processing tile_id 2172
+2024-03-27 13:49:37,904 - INFO - Loading Lidar Json data for tile 2172
+2024-03-27 13:49:47,689 - INFO - Output size of load_json_files: 11288 bytes
+2024-03-27 13:49:49,635 - INFO - Output size of match_shade_data: 11288 bytes
+2024-03-27 13:50:12,249 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:50:12,371 - INFO - Output size of match_json_to_geojson: 11288 bytes
+2024-03-27 13:50:14,415 - INFO - Output size of construct_new_geojson: 884076 bytes
+2024-03-27 13:50:14,606 - INFO - New GeoJSON for tile_id 2172 saved
+2024-03-27 13:50:14,830 - INFO - Start processing tile_id 2175
+2024-03-27 13:50:14,830 - INFO - Loading Lidar Json data for tile 2175
+2024-03-27 13:50:21,172 - INFO - Output size of load_json_files: 10008 bytes
+2024-03-27 13:50:23,088 - INFO - Output size of match_shade_data: 10008 bytes
+2024-03-27 13:50:47,893 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:50:48,018 - INFO - Output size of match_json_to_geojson: 10008 bytes
+2024-03-27 13:50:48,799 - INFO - Output size of construct_new_geojson: 857311 bytes
+2024-03-27 13:50:48,977 - INFO - New GeoJSON for tile_id 2175 saved
+2024-03-27 13:50:49,176 - INFO - Start processing tile_id 2180
+2024-03-27 13:50:49,176 - INFO - Loading Lidar Json data for tile 2180
+2024-03-27 13:51:01,043 - INFO - Output size of load_json_files: 8856 bytes
+2024-03-27 13:51:02,260 - INFO - Output size of match_shade_data: 8856 bytes
+2024-03-27 13:51:22,252 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:51:22,365 - INFO - Output size of match_json_to_geojson: 8856 bytes
+2024-03-27 13:51:23,131 - INFO - Output size of construct_new_geojson: 770603 bytes
+2024-03-27 13:51:23,294 - INFO - New GeoJSON for tile_id 2180 saved
+2024-03-27 13:51:23,585 - INFO - Start processing tile_id 172
+2024-03-27 13:51:23,586 - INFO - Loading Lidar Json data for tile 172
+2024-03-27 13:51:36,509 - INFO - Output size of load_json_files: 14360 bytes
+2024-03-27 13:51:39,280 - INFO - Output size of match_shade_data: 14360 bytes
+2024-03-27 13:52:06,367 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:52:06,529 - INFO - Output size of match_json_to_geojson: 14360 bytes
+2024-03-27 13:52:07,587 - INFO - Output size of construct_new_geojson: 1096117 bytes
+2024-03-27 13:52:07,828 - INFO - New GeoJSON for tile_id 172 saved
+2024-03-27 13:52:08,165 - INFO - Start processing tile_id 175
+2024-03-27 13:52:08,165 - INFO - Loading Lidar Json data for tile 175
+2024-03-27 13:52:21,275 - INFO - Output size of load_json_files: 12728 bytes
+2024-03-27 13:52:23,839 - INFO - Output size of match_shade_data: 12728 bytes
+2024-03-27 13:52:49,947 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:52:50,100 - INFO - Output size of match_json_to_geojson: 12728 bytes
+2024-03-27 13:52:51,287 - INFO - Output size of construct_new_geojson: 944552 bytes
+2024-03-27 13:52:51,495 - INFO - New GeoJSON for tile_id 175 saved
+2024-03-27 13:52:51,893 - INFO - Start processing tile_id 2170
+2024-03-27 13:52:51,893 - INFO - Loading Lidar Json data for tile 2170
+2024-03-27 13:53:02,684 - INFO - Output size of load_json_files: 8856 bytes
+2024-03-27 13:53:04,226 - INFO - Output size of match_shade_data: 8856 bytes
+2024-03-27 13:53:23,530 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:53:23,710 - INFO - Output size of match_json_to_geojson: 8856 bytes
+2024-03-27 13:53:24,373 - INFO - Output size of construct_new_geojson: 673668 bytes
+2024-03-27 13:53:24,519 - INFO - New GeoJSON for tile_id 2170 saved
+2024-03-27 13:53:24,884 - INFO - Start processing tile_id 2177
+2024-03-27 13:53:24,884 - INFO - Loading Lidar Json data for tile 2177
+2024-03-27 13:53:34,861 - INFO - Output size of load_json_files: 10008 bytes
+2024-03-27 13:53:36,813 - INFO - Output size of match_shade_data: 10008 bytes
+2024-03-27 13:53:58,976 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:53:59,088 - INFO - Output size of match_json_to_geojson: 10008 bytes
+2024-03-27 13:53:59,834 - INFO - Output size of construct_new_geojson: 850281 bytes
+2024-03-27 13:54:00,003 - INFO - New GeoJSON for tile_id 2177 saved
+2024-03-27 13:54:00,253 - INFO - Start processing tile_id 170
+2024-03-27 13:54:00,253 - INFO - Loading Lidar Json data for tile 170
+2024-03-27 13:54:11,808 - INFO - Output size of load_json_files: 11288 bytes
+2024-03-27 13:54:13,877 - INFO - Output size of match_shade_data: 11288 bytes
+2024-03-27 13:54:38,153 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:54:38,283 - INFO - Output size of match_json_to_geojson: 11288 bytes
+2024-03-27 13:54:39,156 - INFO - Output size of construct_new_geojson: 903790 bytes
+2024-03-27 13:54:39,355 - INFO - New GeoJSON for tile_id 170 saved
+2024-03-27 13:54:39,562 - INFO - Start processing tile_id 177
+2024-03-27 13:54:39,562 - INFO - Loading Lidar Json data for tile 177
+2024-03-27 13:54:50,184 - INFO - Output size of load_json_files: 11288 bytes
+2024-03-27 13:54:52,324 - INFO - Output size of match_shade_data: 11288 bytes
+2024-03-27 13:55:15,883 - INFO - Output size of construct_nearest_neighbors: 56 bytes
+2024-03-27 13:55:16,007 - INFO - Output size of match_json_to_geojson: 11288 bytes
+2024-03-27 13:55:16,918 - INFO - Output size of construct_new_geojson: 887656 bytes
+2024-03-27 13:55:17,116 - INFO - New GeoJSON for tile_id 177 saved
+2024-03-27 13:55:17,398 - INFO - SCRIPT_END: Processing complete.
