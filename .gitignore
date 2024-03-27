@@ -1,2 +1,6 @@
 map2017/
+BK17/
 .DS_Store
+StreetTreeGeoJSONs/
+venv/
+sylvania.pem

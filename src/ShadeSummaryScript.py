@@ -77,7 +77,7 @@ for tile_folder in os.listdir(year_dir):
             "RelNoon_Perc_Canopy_StreetShade": max_amplitude_row["Perc_Canopy_StreetShade"].mean(),
             "RelNoon_Perc_Canopy_InShade": max_amplitude_row["Perc_Canopy_InShade"].mean()
         }
-            # Extract the daily average shade data
+        # Extract the daily average shade data
         daily_average_shade_data = {
             "DailyAvg_ShadedArea": df["Shadow_Area"].mean(),
             "DailyAvg_ShadedArea_Ground": df["ShadowArea_Ground"].mean(),

@@ -18,7 +18,7 @@ import logging
 from multiprocessing import Pool
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-logging.basicConfig(filename='re_tree_indexing.log', filemode='w', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.basicConfig(filename='re_tree_indexing.log', filemode='w', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def time_it(func):
     def wrapper(*args, **kwargs):
@@ -411,9 +411,8 @@ def save_new_geojson(new_geojson, output_folder, tile_id):
     new_geojson.to_file(output_path, driver='GeoJSON')
     print(f"New GeoJSON for tile {tile_id} saved to {output_path}")
 
-# Main execution 
-    
-def process_tile(sample_dir, tile_id, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance):
+# Main execution    
+def process_tile(sample_dir, tile_id, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance,output_path):
     tqdm.write(f"\nProcessing tile_id {tile_id}")
     json_data = load_json_files(sample_dir, tile_id, year)
     if json_data is None:
@@ -430,34 +429,25 @@ def process_tile(sample_dir, tile_id, year, all_geojson, boundary_path, x_buffer
         matched_data = match_json_to_geojson(json_data, filtered_geojson_data, neighbors)
         matched_data = post_process_matched_data(matched_data)
         new_geojson = construct_new_geojson(matched_data)
-    save_new_geojson(new_geojson, "reZmatchNewResult", tile_id)
+    save_new_geojson(new_geojson, output_path, tile_id)
     logging.info(f"New GeoJSON for tile_id {tile_id} saved")
 
 def main():
     start_time = time.time()
-    sample_dir = 'TFb'
+    sample_dir = 'BK17'
     year = '2017'
     all_geojson = load_all_geojson_files('boroGeoJSONs')  # Assuming this function is defined elsewhere
-    boundary_path = 'Borough_Boundaries.geojson'
-
-    # Load tile folders from CSV
-    file_path = 'temp/diff.csv'
-    diff_tiles = []
-    with open(file_path, mode='r', newline='') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            # Assuming each row contains a single tile name in the first column
-            diff_tiles.append(row[0])
+    boundary_path = 'boundaries/Borough_Boundaries.geojson'
+    output_path = 'NewMatch'
 
     y_buffer_distance = 0.00010484
     x_buffer_distance = 0.00009009
 
-    # Setup the tqdm progress bar
-    with tqdm(total=len(diff_tiles), desc="Processing Tiles") as progress_bar:
-        for tile_folder in diff_tiles:
-            # Process each tile
-            process_tile(sample_dir, tile_folder, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance)
-            # Update the progress bar
+    tile_list = os.listdir(sample_dir)
+
+    with tqdm(total=len(tile_list), desc="Processing Tiles") as progress_bar:
+        for tile in tile_list:
+            process_tile(sample_dir, tile, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance, output_path)
             progress_bar.update(1)
 
     total_execution_time = time.time() - start_time

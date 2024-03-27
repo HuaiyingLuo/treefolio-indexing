@@ -428,7 +428,7 @@ def process_tile(sample_dir, tile_id, year, all_geojson, boundary_path, x_buffer
         matched_data = match_json_to_geojson(json_data, filtered_geojson_data, neighbors)
         matched_data = post_process_matched_data(matched_data)
         new_geojson = construct_new_geojson(matched_data)
-    save_new_geojson(new_geojson, "ZmatchNewResult", tile_id)
+    save_new_geojson(new_geojson, 'ZmatchNewResult', tile_id)
     logging.info(f"New GeoJSON for tile index {index} tile_id {tile_id} saved")
 
 def process_tiles_range(sample_dir, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance, tile_folders_subset, start_index):
@@ -439,7 +439,8 @@ def process_tiles_range(sample_dir, year, all_geojson, boundary_path, x_buffer_d
 
 def main():
     start_time = time.time()
-    sample_dir = 'TFb'
+    # change sample dir here
+    sample_dir = '/Volumes/Extreme SSD/DatatoTransfer'
     year = '2017'
     all_geojson = load_all_geojson_files('boroGeoJSONs')
     boundary_path = 'Borough_Boundaries.geojson'
