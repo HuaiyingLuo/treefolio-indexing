@@ -1,10 +1,10 @@
 import os
+import sys
 import json
 import numpy as np
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point, box
-from shapely.geometry import shape, Point
+from shapely.geometry import Point, box, shape
 from sklearn.neighbors import NearestNeighbors
 from shapely.geometry import shape, Point
 from rtree import index
@@ -13,6 +13,7 @@ import os
 import math
 import csv
 import io
+import signal
 from tqdm import tqdm
 from json.decoder import JSONDecodeError
 import logging
@@ -23,9 +24,10 @@ from botocore.exceptions import ClientError
 # This version added the function to keep track of the progress of the processing tiles
 
 
-
 # Configure logging
 log_directory = '/data/Datasets/MatchingResult'
+
+# ec2 = boto3.client('ec2', region_name='us-east-1')
 
 # Check if the log directory exists, and create it if it doesn't
 if not os.path.exists(log_directory):
@@ -476,44 +478,64 @@ def save_new_geojson(new_geojson, output_folder, tile_id):
 
 
 
-def save_progress(last_processed_tile_id, log_directory):
-    progress_path = os.path.join(log_directory, 'progress.log')
-    with open(progress_path, 'w') as f:
-        f.write(last_processed_tile_id)
+# def save_progress(last_processed_tile_id, log_directory):
+#     progress_path = os.path.join(log_directory, 'progress.log')
+#     with open(progress_path, 'w') as f:
+#         f.write(last_processed_tile_id)
 
-def load_progress(log_directory):
-    progress_path = os.path.join(log_directory, 'progress.log')
-    if os.path.exists(progress_path):
-        with open(progress_path) as f:
-            return f.read().strip()
-    return None
+# def load_progress(log_directory):
+#     progress_path = os.path.join(log_directory, 'progress.log')
+#     if os.path.exists(progress_path):
+#         with open(progress_path) as f:
+#             return f.read().strip()
+#     return None
+
+
+
+# # Signal handler to catch SIGTERM and SIGINT
+# def shutdown_instance():
+#     instance_id = 'i-03fcf88b7ca06eb2f' 
+#     try:
+#         ec2.stop_instances(InstanceIds=[instance_id])
+#         logging.info(f"Instance {instance_id} is shutting down.")
+#     except Exception as e:
+#         logging.error(f"Error stopping instance {instance_id}: {e}")
+
+# def signal_handler(signum, frame):
+#     logging.info(f"Received signal {signum}, shutting down the instance...")
+#     shutdown_instance()
+#     sys.exit(0)
+
 
 
 
 # Main execution    
 def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance,output_dir):
-    logging.info(f"Start processing tile_id {tile_id}")
-    tqdm.write(f"Start processing tile_id {tile_id}")
-    json_data = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year)
-    if json_data is None:
-        return None
-    json_data = match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year)
-    json_data = match_json_with_geojson_boundary(json_data, boundary_path)
-    tile_bounds = get_tile_bounds(json_data, x_buffer_distance, y_buffer_distance)
-    filtered_geojson_data = filter_geojson_data(all_geojson, tile_bounds) 
-    avg_dbh = get_avg_dbh(filtered_geojson_data)
-    avg_canopy_radius = calculate_canopy_radius(avg_dbh)
-    if filtered_geojson_data == None: # there is no street tree in the given tile
-        new_geojson = construct_new_geojson_from_shade(json_data)
-    else:
-        neighbors = construct_nearest_neighbors(filtered_geojson_data)
-        matched_data = match_json_to_geojson(json_data, filtered_geojson_data, neighbors)
-        matched_data = post_process_matched_data(matched_data)
-        new_geojson = construct_new_geojson(matched_data, avg_canopy_radius)
-    save_new_geojson(new_geojson, output_dir, tile_id)
-    tqdm.write(f"New GeoJSON for tile_id {tile_id} saved")
-    logging.info(f"New GeoJSON for tile_id {tile_id} saved")
-    
+    try: 
+        logging.info(f"Start processing tile_id {tile_id}")
+        tqdm.write(f"Start processing tile_id {tile_id}")
+        json_data = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year)
+        if json_data is None:
+            return None
+        json_data = match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year)
+        json_data = match_json_with_geojson_boundary(json_data, boundary_path)
+        tile_bounds = get_tile_bounds(json_data, x_buffer_distance, y_buffer_distance)
+        filtered_geojson_data = filter_geojson_data(all_geojson, tile_bounds) 
+        avg_dbh = get_avg_dbh(filtered_geojson_data)
+        avg_canopy_radius = calculate_canopy_radius(avg_dbh)
+        if filtered_geojson_data == None: # there is no street tree in the given tile
+            new_geojson = construct_new_geojson_from_shade(json_data)
+        else:
+            neighbors = construct_nearest_neighbors(filtered_geojson_data)
+            matched_data = match_json_to_geojson(json_data, filtered_geojson_data, neighbors)
+            matched_data = post_process_matched_data(matched_data)
+            new_geojson = construct_new_geojson(matched_data, avg_canopy_radius)
+        save_new_geojson(new_geojson, output_dir, tile_id)
+        tqdm.write(f"New GeoJSON for tile_id {tile_id} saved")
+        logging.info(f"New GeoJSON for tile_id {tile_id} saved")
+    except Exception as e:
+        logging.error(f"Error processing tile_id: {tile_id}. Error: {e}", exc_info=True)
+
 
 
 def main():
@@ -535,26 +557,15 @@ def main():
 
     tile_keys = list_s3_dirs(bucket_name, base_prefix) 
 
-    last_processed_tile_id = load_progress(log_directory)
-    start_processing = False if last_processed_tile_id else True
-
     try:
         with tqdm(total=len(tile_keys), desc="Processing Tiles") as progress_bar:
             for tile_key in tile_keys:
-                if not start_processing:
-                    if tile_key == last_processed_tile_id:
-                        start_processing = True
-                    progress_bar.update(1)
-                    continue
-                
                 process_tile(bucket_name, base_prefix, tile_key, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance, output_dir)
-                save_progress(tile_key, log_directory)
                 progress_bar.update(1)
     except Exception as e:
-        progress_bar.close()
-        logging.error(f"SCRIPT_ERROR: {e}")
+        progress_bar.close()  # Ensure the progress bar is closed in case of an exception
+        logging.error("Error occurred during the main processing", exc_info=True)
     logging.info("SCRIPT_END: Processing complete.")
-
 
 
 def shutdown_instance():
@@ -565,5 +576,3 @@ def shutdown_instance():
 if __name__ == "__main__":
     main()
     shutdown_instance()
-
-
