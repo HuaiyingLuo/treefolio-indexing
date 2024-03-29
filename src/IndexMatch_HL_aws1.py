@@ -25,7 +25,7 @@ from botocore.exceptions import ClientError
 
 
 # Configure logging
-log_directory = '/data/Datasets/MatchingResult'
+log_directory = '/data/Datasets/MatchingResult_All'
 
 # ec2 = boto3.client('ec2', region_name='us-east-1')
 
@@ -246,6 +246,9 @@ def filter_geojson_data(geojson_data, tile_bounds):
 
 # calculate the average dbh
 def get_avg_dbh(filter_geojson_data):
+    if filter_geojson_data is None or "features" not in filter_geojson_data:
+        logging.info("filter_geojson_data is None or missing features")
+        return None
     sum_dbh = 0
     features = filter_geojson_data["features"]
     for feature in features:
@@ -537,7 +540,6 @@ def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_
         logging.error(f"Error processing tile_id: {tile_id}. Error: {e}", exc_info=True)
 
 
-
 def main():
     # change the bucket here
     bucket_name = 'treefolio-sylvania-data'
@@ -545,7 +547,7 @@ def main():
     # needed data stored in ec2 instance ebs
     all_geojson = load_all_geojson_files('/data/Datasets/StreetTreeGeoJSONs') 
     boundary_path = '/data/Datasets/Boundaries/Borough_Boundaries.geojson'
-    output_dir = '/data/Datasets/MatchingResult_BK17'
+    output_dir = '/data/Datasets/MatchingResult_All'
 
     y_buffer_distance = 0.00010484
     x_buffer_distance = 0.00009009
