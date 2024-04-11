@@ -34,7 +34,7 @@ if not os.path.exists(log_directory):
     os.makedirs(log_directory)
 
 log_filename = os.path.join(log_directory, 'tree_indexing.log')
-logging.basicConfig(filename=log_filename, filemode='w', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=log_filename, filemode='a', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 s3 = boto3.client('s3')
 
@@ -480,6 +480,38 @@ def save_new_geojson(new_geojson, output_folder, tile_id):
 
 
 
+
+# def save_progress(last_processed_tile_id, log_directory):
+#     progress_path = os.path.join(log_directory, 'progress.log')
+#     with open(progress_path, 'w') as f:
+#         f.write(last_processed_tile_id)
+
+# def load_progress(log_directory):
+#     progress_path = os.path.join(log_directory, 'progress.log')
+#     if os.path.exists(progress_path):
+#         with open(progress_path) as f:
+#             return f.read().strip()
+#     return None
+
+
+
+# # Signal handler to catch SIGTERM and SIGINT
+# def shutdown_instance():
+#     instance_id = 'i-03fcf88b7ca06eb2f' 
+#     try:
+#         ec2.stop_instances(InstanceIds=[instance_id])
+#         logging.info(f"Instance {instance_id} is shutting down.")
+#     except Exception as e:
+#         logging.error(f"Error stopping instance {instance_id}: {e}")
+
+# def signal_handler(signum, frame):
+#     logging.info(f"Received signal {signum}, shutting down the instance...")
+#     shutdown_instance()
+#     sys.exit(0)
+
+
+
+
 # Main execution    
 def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance,output_dir):
     try: 
@@ -507,11 +539,6 @@ def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_
     except Exception as e:
         logging.error(f"Error processing tile_id: {tile_id}. Error: {e}", exc_info=True)
 
-def is_tile_processed(tile_key, output_dir):
-    # Check if a file corresponding to the tile_key exists in output_dir
-    # This can be adjusted based on how you name the output files
-    output_file_path = os.path.join(output_dir, f'NewMatchedShadingTrees_{tile_key}.geojson')
-    return os.path.exists(output_file_path)
 
 def main():
     # change the bucket here
@@ -525,16 +552,19 @@ def main():
     y_buffer_distance = 0.00010484
     x_buffer_distance = 0.00009009
 
+    # test data 
+    # prefix = 'BK17/'
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
-    tile_keys = list_s3_dirs(bucket_name, base_prefix) 
+
+    # tile_keys = list_s3_dirs(bucket_name, base_prefix)
+
+    # selected tile keys for trouble shooting
+    tile_keys = ['987177', '987182', '935160'] 
 
     try:
         with tqdm(total=len(tile_keys), desc="Processing Tiles") as progress_bar:
             for tile_key in tile_keys:
-                if is_tile_processed(tile_key, output_dir):
-                    progress_bar.update(1)
-                    continue
                 process_tile(bucket_name, base_prefix, tile_key, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance, output_dir)
                 progress_bar.update(1)
     except Exception as e:
@@ -542,9 +572,11 @@ def main():
         logging.error("Error occurred during the main processing", exc_info=True)
     logging.info("SCRIPT_END: Processing complete.")
 
+
 def shutdown_instance():
     print("Shutting down the instance...")
     os.system('sudo shutdown now')
+
 
 if __name__ == "__main__":
     main()
