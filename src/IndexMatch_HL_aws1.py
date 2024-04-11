@@ -23,7 +23,6 @@ from botocore.exceptions import ClientError
 
 # This version added the function to keep track of the progress of the processing tiles
 
-
 # Configure logging
 log_directory = '/data/Datasets/MatchingResult_All'
 
@@ -34,7 +33,7 @@ if not os.path.exists(log_directory):
     os.makedirs(log_directory)
 
 log_filename = os.path.join(log_directory, 'tree_indexing.log')
-logging.basicConfig(filename=log_filename, filemode='w', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename=log_filename, filemode='a', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 s3 = boto3.client('s3')
 
