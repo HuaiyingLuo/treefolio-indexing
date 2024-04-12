@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import gc
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -478,7 +479,6 @@ def save_new_geojson(new_geojson, output_folder, tile_id):
     new_geojson.to_file(output_path, driver='GeoJSON')
 
 
-
 # Main execution    
 def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance,output_dir):
     try: 
@@ -503,12 +503,15 @@ def process_tile(bucket_name, base_prefix, tile_id, year, all_geojson, boundary_
         save_new_geojson(new_geojson, output_dir, tile_id)
         tqdm.write(f"New GeoJSON for tile_id {tile_id} saved")
         logging.info(f"New GeoJSON for tile_id {tile_id} saved")
+        # After processing the tile, manually invoke GC to clean up
+        gc.collect()
     except Exception as e:
         logging.error(f"Error processing tile_id: {tile_id}. Error: {e}", exc_info=True)
+        # Clean up memory after an error to prevent memory leaks
+        gc.collect()
 
 def is_tile_processed(tile_key, output_dir):
     # Check if a file corresponding to the tile_key exists in output_dir
-    # This can be adjusted based on how you name the output files
     output_file_path = os.path.join(output_dir, f'NewMatchedShadingTrees_{tile_key}.geojson')
     return os.path.exists(output_file_path)
 
@@ -529,13 +532,19 @@ def main():
     tile_keys = list_s3_dirs(bucket_name, base_prefix) 
 
     try:
-        with tqdm(total=len(tile_keys), desc="Processing Tiles") as progress_bar:
+        processed_count = 0
+        with tqdm(total=len(tile_keys), desc="Processing Progress") as progress_bar:
             for tile_key in tile_keys:
+                if tile_key in ['935160', '935162', '12147', '20162']:
+                    progress_bar.update(1)
+                    continue # skip this tile, troubleshooting later
                 if is_tile_processed(tile_key, output_dir):
                     progress_bar.update(1)
                     continue
                 process_tile(bucket_name, base_prefix, tile_key, year, all_geojson, boundary_path, x_buffer_distance, y_buffer_distance, output_dir)
                 progress_bar.update(1)
+                processed_count += 1
+                tqdm.write(f"Processed tiles count: {processed_count}")
     except Exception as e:
         progress_bar.close()  # Ensure the progress bar is closed in case of an exception
         logging.error("Error occurred during the main processing", exc_info=True)
