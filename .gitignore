@@ -5,3 +5,6 @@ StreetTreeGeoJSONs/
 venv/
 sylvania.pem
 test_results/
+result/
+sample_tiles/
+

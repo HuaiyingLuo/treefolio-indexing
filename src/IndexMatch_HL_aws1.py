@@ -7,7 +7,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point, box, shape
 from sklearn.neighbors import NearestNeighbors
-from shapely.geometry import shape, Point
+from memory_profiler import profile
 from rtree import index
 import time
 import os
@@ -68,7 +68,7 @@ def time_it(func):
 
 
 
-@time_it
+@profile
 def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
     all_json_data = []
     # Construct the prefix
@@ -109,7 +109,7 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
 
 
 
-
+@profile
 def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year):
     all_json_data = []
     for data in json_data:
@@ -184,7 +184,7 @@ def create_rtree_index(geojson_data):
         idx.insert(pos, polygon.bounds)
     return idx
 
-
+@profile
 def match_json_with_geojson_boundary(json_data, geojson_path):
     with open(geojson_path) as f:
         geojson_data = json.load(f)
@@ -212,7 +212,7 @@ def get_tile_bounds(json_data, y_buffer_distance, x_buffer_distance):
     return box(min(x_coords) - x_buffer_distance, min(y_coords) - y_buffer_distance, 
                max(x_coords) + x_buffer_distance, max(y_coords) + y_buffer_distance)
 
-
+@profile
 def load_all_geojson_files(folder):
     points = []
     features_properties = []
@@ -229,7 +229,7 @@ def load_all_geojson_files(folder):
                 coords.append(point)
     return {'points': np.array(points), 'features_properties': features_properties, 'coords': coords} 
 
-
+@profile
 def filter_geojson_data(geojson_data, tile_bounds):
     filtered_features = []
     for i, point in enumerate(geojson_data['coords']):
@@ -244,6 +244,7 @@ def filter_geojson_data(geojson_data, tile_bounds):
         return None
     return {'type': 'FeatureCollection', 'features': filtered_features}
 
+
 # calculate the average dbh
 def get_avg_dbh(filter_geojson_data):
     if filter_geojson_data is None or "features" not in filter_geojson_data:
@@ -257,6 +258,7 @@ def get_avg_dbh(filter_geojson_data):
             sum_dbh += properties["tree_dbh"]
     return sum_dbh / len(features)
 
+
 def construct_nearest_neighbors(data):
     features = data['features']
     if not features:  
@@ -266,6 +268,7 @@ def construct_nearest_neighbors(data):
         points = points.reshape(-1, 1)  # Reshape to 2D if it's 1D
     return NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(points)
 
+@profile
 def match_json_to_geojson(json_data, geojson_data, neighbors):
     matched_data = []
     for data in json_data:
@@ -283,6 +286,7 @@ def match_json_to_geojson(json_data, geojson_data, neighbors):
         })
     return matched_data # [{}]
 
+@profile
 def post_process_matched_data(matched_data):
    # Find the nearest match for each tree_id
     nearest_match_for_tree_id = {}
@@ -317,6 +321,7 @@ def calculate_canopy_radius(tree_dbh):
     canopy_radius_m = canopy_diameter_m / 2
     return canopy_radius_m
 
+@profile
 def construct_new_geojson_from_shade(json_data):
     features = []
     for data in json_data:
@@ -381,7 +386,7 @@ def construct_new_geojson_from_shade(json_data):
         combined_gdf = pd.concat(features, ignore_index=True)
         return combined_gdf
 
-
+@profile
 def construct_new_geojson(matched_data, avg_canopy_radius):
     features = []
     for data in matched_data:
@@ -470,8 +475,7 @@ def construct_new_geojson(matched_data, avg_canopy_radius):
         combined_gdf = pd.concat(features, ignore_index=True)
         return combined_gdf
 
-
-
+@profile
 def save_new_geojson(new_geojson, output_folder, tile_id):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -529,15 +533,18 @@ def main():
 
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
-    tile_keys = list_s3_dirs(bucket_name, base_prefix) 
+    # tile_keys = list_s3_dirs(bucket_name, base_prefix) 
+
+    # oom troubleshooting
+    tile_keys = ['935160', '935162', '12147', '20162','24611']
 
     try:
         processed_count = 0
         with tqdm(total=len(tile_keys), desc="Processing Progress") as progress_bar:
             for tile_key in tile_keys:
-                if tile_key in ['935160', '935162', '12147', '20162']:
-                    progress_bar.update(1)
-                    continue # skip this tile, troubleshooting later
+                # if tile_key in ['935160', '935162', '12147', '20162','24611']:
+                #     progress_bar.update(1)
+                #     continue # skip this tile, troubleshooting later
                 if is_tile_processed(tile_key, output_dir):
                     progress_bar.update(1)
                     continue
