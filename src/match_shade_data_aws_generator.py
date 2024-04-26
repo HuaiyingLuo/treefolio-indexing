@@ -210,7 +210,7 @@ def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features,
 
 def is_tile_processed(tile_key, output_dir):
     # Check if a file corresponding to the tile_key exists in output_dir
-    output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_key}.geojson')
+    output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_key}.json')
     return os.path.exists(output_file_path)
 
 # Main execution and other functions remain largely unchanged
