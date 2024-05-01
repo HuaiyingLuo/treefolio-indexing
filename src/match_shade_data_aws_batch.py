@@ -10,6 +10,7 @@ from tqdm import tqdm
 import gc
 from botocore.exceptions import ClientError
 from memory_profiler import memory_usage
+import shutil
 
 # Configure logging
 log_directory = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
@@ -37,8 +38,9 @@ def list_s3_dirs(bucket_name, prefix):
                 dirs.add(obj['Prefix'].rstrip('/').split('/')[-1])
     return list(dirs)
 
-def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
+def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, batch_size=100):
     prefix = f"{base_prefix}{tile_id}/{year}/JSON_TreeData_{tile_id}/"
+    batch = []
     try:
         paginator = s3.get_paginator('list_objects_v2')
         for page in paginator.paginate(Bucket=bucket_name, Prefix=prefix):
@@ -50,24 +52,25 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
                     continue
                 json_file_content = read_s3_object(bucket_name, json_file_key)
                 if json_file_content:
-                    try:
-                        data = json.loads(json_file_content.decode('utf-8'))
-                        extracted_data = {
-                            "Tree_CountId": data.get("Tree_CountId", None),
-                            "Recorded Year": data.get("RecordedYear", None),
-                            "TopofCanopyHeight": data.get("TreeFoliageHeight", None),
-                            "CanopyVolume": data.get("ConvexHull_TreeDict", {}).get("volume", None),
-                            "CanopyArea": data.get("ConvexHull_TreeDict", {}).get("area", None),
-                            "InPark": data.get("InPark", None),
-                            "GroundHeight": data.get("GroundZValue", None),
-                            "FoliageHeight": data.get("TreeFoliageHeight", None),
-                            "PredictedTreeLocation": data.get("PredictedTreeLocation", None),
-                            "tile_id": tile_id 
-                        }
-                        yield extracted_data
-                    except json.JSONDecodeError as e:
-                        error_message = f"Error decoding JSON from {json_file_key} for tile {tile_id}: {e}"
-                        logging.error(error_message)
+                    data = json.loads(json_file_content.decode('utf-8'))
+                    extracted_data = {
+                        "Tree_CountId": data.get("Tree_CountId", None),
+                        "Recorded Year": data.get("RecordedYear", None),
+                        "TopofCanopyHeight": data.get("TreeFoliageHeight", None),
+                        "CanopyVolume": data.get("ConvexHull_TreeDict", {}).get("volume", None),
+                        "CanopyArea": data.get("ConvexHull_TreeDict", {}).get("area", None),
+                        "InPark": data.get("InPark", None),
+                        "GroundHeight": data.get("GroundZValue", None),
+                        "FoliageHeight": data.get("TreeFoliageHeight", None),
+                        "PredictedTreeLocation": data.get("PredictedTreeLocation", None),
+                        "tile_id": tile_id 
+                    }
+                    batch.append(extracted_data)    
+                    if len(batch) >= batch_size:
+                        yield batch
+                        batch = []
+        if batch:
+            yield batch
     except ClientError as e:
         logging.error(f"Failed to list objects in bucket {bucket_name} with prefix {prefix}: {e}")
             
@@ -148,7 +151,7 @@ def load_boundaries_and_create_index(geojson_path):
         logging.error("Failed to load or parse the GeoJSON file: {}".format(e))
         raise
 
-def match_points_with_geojson(json_data, idx, geojson_features):
+def match_points_with_geojson(json_data, idx, geojson_features): # what is idx
     for point_dict in json_data:
         point = Point(point_dict['PredictedTreeLocation']['Longitude'], point_dict['PredictedTreeLocation']['Latitude'])
         match_found = False  # Flag to indicate a successful match
@@ -169,47 +172,44 @@ def match_points_with_geojson(json_data, idx, geojson_features):
         yield point_dict
 
 # save the json data to ebs
-def save_json_to_ebs(json_data, output_dir, tile_id):
+def save_json_to_ebs(json_batch, output_dir, tile_id):
     output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_id}.json')
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     try:
-        with open(output_file_path, 'w') as f:
-            json.dump(json_data, f, indent=4)
-        logging.info(f"Successfully saved matched shading trees data for tile_id {tile_id}")
-        tqdm.write(f"Successfully saved matched shading trees data for tile_id {tile_id}")
+        with open(output_file_path, 'a') as file:
+            for item in json_batch:
+                json.dump(item, file, indent=4)
+                file.write('\n')
+        logging.info(f"Batch saved for tile_id {tile_id}")
+        tqdm.write(f"Batch saved for tile_id {tile_id}")
         return True
     except Exception as e:
         logging.error(f"Failed to save matched shading trees data for tile_id {tile_id}: {e}")
         return False
 
-def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features, output_dir):
-    tqdm.write(f"Start processing tile_id {tile_id}")
-    # # test the mem usage here
-    # mem_start = memory_usage(-1)[0]
-    # print(f'Memory usage start: {mem_start:.2f} MiB')
-
-    # batch process the data
-    json_data_generator = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year)
-    # # test the mem usage here
-    # mem_after_loading = memory_usage(-1)[0]
-    # print(f'Memory usage after loading json from s3: {mem_after_loading:.2f} MiB')
-
-    shaded_data_generator = match_shade_data_from_s3(json_data_generator, bucket_name, base_prefix, tile_id, year)
-    # # test the mem usage here
-    # mem_after_matching_shade = memory_usage(-1)[0]
-    # print(f'Memory usage after matching shading data: {mem_after_matching_shade:.2f} MiB')
-
-    geojson_matched_data = match_points_with_geojson(shaded_data_generator, idx, geojson_features)
-    # # test the mem usage here
-    # mem_after_matching_boro = memory_usage(-1)[0]
-    # print(f'Memory usage after matching boro data: {mem_after_matching_boro:.2f} MiB')
-
-    # batch save the data
-    save_json_to_ebs(list(geojson_matched_data), output_dir, tile_id)
-    # # test the mem usage here
-    # mem_after_saving = memory_usage(-1)[0]
-    # print(f'Memory usage after saving res: {mem_after_saving:.2f} MiB')
+def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features, output_dir, output_temp_dir):
+    logging.info(f"Start processing batch tile_id {tile_id}")
+    tqdm.write(f"Start processing batch tile_id {tile_id}")
+    json_data_batches = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, 50)
     
-    gc.collect()
+    for json_batch in json_data_batches:
+        shaded_data_batch = match_shade_data_from_s3(json_batch, bucket_name, base_prefix, tile_id, year)
+        geojson_matched_data_batch = match_points_with_geojson(shaded_data_batch, idx, geojson_features)
+        save_json_to_ebs(geojson_matched_data_batch, output_temp_dir, tile_id)
+    
+    # if all batches are processed, save the final geojson file to the output directory
+    source_path = os.path.join(output_temp_dir, f'MatchedShadingTrees_{tile_id}.json')
+    dest_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_id}.json')
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    shutil.move(source_path, dest_path)
+    
+    tqdm.write(f"New GeoJSON for tile_id {tile_id} saved, Finished processing all batches")
+    logging.info(f"New GeoJSON for tile_id {tile_id} saved, Finished processing all batches")
+
+    gc.collect()  
+
 
 def is_tile_processed(tile_key, output_dir):
     # Check if a file corresponding to the tile_key exists in output_dir
@@ -225,6 +225,8 @@ def main():
     # all_geojson = load_all_geojson_files('/data/Datasets/StreetTreeGeoJSONs') 
     boundary_path = '/data/Datasets/Boundaries/Borough_Boundaries.geojson'
     output_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
+    output_temp_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017/batch_temp'
+
     if not os.path.exists(output_dir):
         os.makedirs(output_dir) 
 
@@ -247,7 +249,7 @@ def main():
                     tqdm.write(f"Already processed tile {tile_key}.")
                     progress_bar.update(1)
                     continue
-                process_tile(bucket_name, base_prefix, tile_key, year, idx, geojson_features, output_dir)
+                process_tile(bucket_name, base_prefix, tile_key, year, idx, geojson_features, output_dir, output_temp_dir)
                 progress_bar.update(1)
     except Exception as e:
         progress_bar.close()  # Ensure the progress bar is closed in case of an exception
