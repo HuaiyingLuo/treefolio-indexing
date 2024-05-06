@@ -26,6 +26,8 @@ def read_s3_object(bucket_name, object_key):
         response = s3.get_object(Bucket=bucket_name, Key=object_key)
         return response['Body'].read()
     except s3.exceptions.NoSuchKey:
+        logging.error(f"Object {object_key} does not exist in bucket {bucket_name}")
+        tqdm.write(f"Object {object_key} does not exist in bucket {bucket_name}")
         return None
 
 def list_s3_dirs(bucket_name, prefix):
@@ -68,6 +70,9 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
                     except json.JSONDecodeError as e:
                         error_message = f"Error decoding JSON from {json_file_key} for tile {tile_id}: {e}"
                         logging.error(error_message)
+                else:
+                    logging.error(f"Failed to read JSON file {json_file_key} for tile {tile_id}")
+                    return None
     except ClientError as e:
         logging.error(f"Failed to list objects in bucket {bucket_name} with prefix {prefix}: {e}")
             
@@ -189,25 +194,14 @@ def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features,
 
     # batch process the data
     json_data_generator = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year)
-    # # test the mem usage here
-    # mem_after_loading = memory_usage(-1)[0]
-    # print(f'Memory usage after loading json from s3: {mem_after_loading:.2f} MiB')
+    if json_data_generator is None:
+        return
 
     shaded_data_generator = match_shade_data_from_s3(json_data_generator, bucket_name, base_prefix, tile_id, year)
-    # # test the mem usage here
-    # mem_after_matching_shade = memory_usage(-1)[0]
-    # print(f'Memory usage after matching shading data: {mem_after_matching_shade:.2f} MiB')
 
     geojson_matched_data = match_points_with_geojson(shaded_data_generator, idx, geojson_features)
-    # # test the mem usage here
-    # mem_after_matching_boro = memory_usage(-1)[0]
-    # print(f'Memory usage after matching boro data: {mem_after_matching_boro:.2f} MiB')
-
-    # batch save the data
+    
     save_json_to_ebs(list(geojson_matched_data), output_dir, tile_id)
-    # # test the mem usage here
-    # mem_after_saving = memory_usage(-1)[0]
-    # print(f'Memory usage after saving res: {mem_after_saving:.2f} MiB')
     
     gc.collect()
 
@@ -233,10 +227,36 @@ def main():
 
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
-    tile_keys = list_s3_dirs(bucket_name, base_prefix) 
-    if tile_keys:
-        pd.DataFrame(tile_keys, columns=['TileKey']).to_csv('/data/Datasets/MatchingResult_All/tile_keys.csv', index=False)
+    # tile_keys = list_s3_dirs(bucket_name, base_prefix) 
 
+    # unprocessed = [
+    # "925140",
+    # "990217",
+    # "40235",
+    # "917117",
+    # "995152",
+    # "20162",
+    # "20155",
+    # "10140",
+    # "10227",
+    # "25232",
+    # "45207",
+    # "992175",
+    # "45162",
+    # "972172",
+    # "20167",
+    # "947132",
+    # "45240",
+    # "40172",
+    # "17227",
+    # "22222",
+    # "42247",
+    # "12230",
+    # "35247"
+    # ]
+
+    tile_keys = ['10140', '45240', '40172', '45162']
+   
     # Load GeoJSON data once and create R-tree index
     idx, geojson_features = load_boundaries_and_create_index(boundary_path)
 

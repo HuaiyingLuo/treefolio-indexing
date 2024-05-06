@@ -69,6 +69,7 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, batch_size=
                     if len(batch) >= batch_size:
                         yield batch
                         batch = []
+                        gc.collect()
         if batch:
             yield batch
     except ClientError as e:
@@ -79,7 +80,7 @@ def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year)
     for data in json_data:
         tile_ID = data["tile_id"]
         tree_id = data["Tree_CountId"]
-        # Construct the S3 key for the CSV file
+        # Construct the S3 key for the CSV file -- for each tree
         csv_key = f"{base_prefix}{tile_id}/{year}/Shading_Metrics_{tile_ID}/Shading_Metric_{tile_ID}_Tree_ID_{tree_id}.csv"
         csv_content = read_s3_object(bucket_name, csv_key)
         if csv_content is None:
@@ -191,24 +192,46 @@ def save_json_to_ebs(json_batch, output_dir, tile_id):
 def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features, output_dir, output_temp_dir):
     logging.info(f"Start processing batch tile_id {tile_id}")
     tqdm.write(f"Start processing batch tile_id {tile_id}")
-    json_data_batches = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, 50)
+    json_data_batches = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, 1)
+    
+    mem_after = memory_usage(-1)[0]
+    print(f'Memory usage after loading batches: {mem_after:.2f} MiB')
     
     for json_batch in json_data_batches:
         shaded_data_batch = match_shade_data_from_s3(json_batch, bucket_name, base_prefix, tile_id, year)
+        # mem_after = memory_usage(-1)[0]
+        # print(f'Memory usage after matching shading csv: {mem_after:.2f} MiB')
+        del json_batch  # Explicitly delete the batch after processing
+        gc.collect()  # Force garbage collection
+
         geojson_matched_data_batch = match_points_with_geojson(shaded_data_batch, idx, geojson_features)
+        del shaded_data_batch
+        gc.collect()
+
         save_json_to_ebs(geojson_matched_data_batch, output_temp_dir, tile_id)
+        del geojson_matched_data_batch
+        gc.collect()
     
     # if all batches are processed, save the final geojson file to the output directory
     source_path = os.path.join(output_temp_dir, f'MatchedShadingTrees_{tile_id}.json')
     dest_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_id}.json')
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    shutil.move(source_path, dest_path)
-    
+
+    if not os.path.exists(source_path):
+        logging.error(f"No temporary file for tile_id {tile_id}")
+        tqdm.write(f"No temporary file for tile_id {tile_id}")
+        return
+    else: 
+        try:
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            shutil.move(source_path, dest_path)
+        except Exception as e:
+            logging.error(f"Failed to move for tile_id {tile_id}: {e}")
+            tqdm.write(f"Failed to move for tile_id {tile_id}: {e}")
+       
     tqdm.write(f"New GeoJSON for tile_id {tile_id} saved, Finished processing all batches")
     logging.info(f"New GeoJSON for tile_id {tile_id} saved, Finished processing all batches")
-
-    gc.collect()  
+ 
 
 
 def is_tile_processed(tile_key, output_dir):
@@ -236,8 +259,35 @@ def main():
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
     tile_keys = list_s3_dirs(bucket_name, base_prefix) 
-    if tile_keys:
-        pd.DataFrame(tile_keys, columns=['TileKey']).to_csv('/data/Datasets/MatchingResult_All/tile_keys.csv', index=False)
+    # if tile_keys:
+    #     pd.DataFrame(tile_keys, columns=['TileKey']).to_csv('/data/Datasets/MatchingResult_All/tile_keys.csv', index=False)
+    
+    # unprocessed = [
+    # "925140",
+    # "990217",
+    # "40235", 
+    # "917117",
+    # "995152",
+    # "20162", 
+    # "20155", 
+    # "10140",
+    # "10227", 
+    # "25232", 
+    # "45207",
+    # "992175",
+    # "45162", 
+    # "972172", 
+    # "20167", 
+    # "947132",
+    # "45240", 
+    # "40172", 
+    # "17227",
+    # "22222", 
+    # "42247", 
+    # "12230", 
+    # "35247" 
+    # ]
+    # tile_keys = unprocessed
 
     # Load GeoJSON data once and create R-tree index
     idx, geojson_features = load_boundaries_and_create_index(boundary_path)

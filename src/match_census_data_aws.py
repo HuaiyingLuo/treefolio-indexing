@@ -51,16 +51,20 @@ def list_s3_dirs(bucket_name, prefix):
 
 
 def load_matched_shading_data(input_dir, tile_id):
-    # Load the matched shading data for the given tile
-    target_path = os.path.join(input_dir, f'MatchedShadingTrees_{tile_id}.json')
-    if target_path:
+    target_path = os.path.join(input_dir, f'MatchedShadingTrees_{tile_id}.json') 
+    try:
         with open(target_path, 'r') as f:
             data = json.load(f)
             return data
-    else:
-        logging.error(f"Matched shading data for tile {tile_id} does not exist")
+    except FileNotFoundError:
+        logging.error(f"Matched shading data file not found for tile {tile_id}")
         return None
-    
+    except json.JSONDecodeError:
+        logging.error(f"JSON decoding failed for the file associated with tile {tile_id}")
+        return None
+    except Exception as e:
+        logging.error(f"An error occurred while loading shading data for tile {tile_id}: {e}")
+        return None
 
 def get_tile_bounds(json_data, y_buffer_distance, x_buffer_distance):
     x_coords = [d["PredictedTreeLocation"]["Longitude"] for d in json_data]
@@ -71,6 +75,7 @@ def get_tile_bounds(json_data, y_buffer_distance, x_buffer_distance):
                max(x_coords) + x_buffer_distance, max(y_coords) + y_buffer_distance)
 
 
+# load all street tree geojson files
 def load_all_geojson_files(folder):
     points = []
     features_properties = []
@@ -121,7 +126,7 @@ def calculate_canopy_radius(tree_dbh):
     canopy_radius_m = canopy_diameter_m / 2
     return canopy_radius_m
 
-
+# mem?
 def construct_nearest_neighbors(data):
     features = data['features']
     if not features:  
@@ -131,26 +136,27 @@ def construct_nearest_neighbors(data):
         points = points.reshape(-1, 1)  # Reshape to 2D if it's 1D
     return NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(points)
 
-# generator
+
+# mem?
 def match_json_to_geojson(json_data, geojson_data, neighbors):
     matched_data = []
     for data in json_data:
         point = np.array([[data["PredictedTreeLocation"]["Longitude"], data["PredictedTreeLocation"]["Latitude"]]])
         distance, index = neighbors.kneighbors(point)
-        matched_properties = geojson_data['features'][index[0][0]]['properties'] # {}
-        matched_geojson_point = geojson_data['features'][index[0][0]]['geometry']['coordinates'] # []
+        matched_properties = geojson_data['features'][index[0][0]]['properties'] 
+        matched_geojson_point = geojson_data['features'][index[0][0]]['geometry']['coordinates'] 
         matched_data.append({
             'json_data': data,
-            'geojson_properties': matched_properties, # {}
-            'tree_id': matched_properties['tree_id'],  # str
+            'geojson_properties': matched_properties, 
+            'tree_id': matched_properties['tree_id'],  
             'distance': distance[0][0],
-            'geojson_point': matched_geojson_point, # []
+            'geojson_point': matched_geojson_point, 
             'isNearest': False
         })
-    return matched_data # [{}]
+    return matched_data 
 
 
-# generator
+# mem?
 def post_process_matched_data(matched_data):
    # Find the nearest match for each tree_id
     nearest_match_for_tree_id = {}
@@ -177,7 +183,7 @@ def post_process_matched_data(matched_data):
     return matched_data
 
 
-# generator
+# mem?
 def construct_new_geojson_from_shade(json_data):
     features = []
 
@@ -275,7 +281,12 @@ def save_new_geojson(new_geojson, output_folder, tile_id):
 # Main execution    
 def process_tile(tile_id, all_geojson, x_buffer_distance, y_buffer_distance,input_dir,output_dir):
     try: 
+        tqdm.write(f"Processing tile_id: {tile_id}")
         json_data = load_matched_shading_data(input_dir, tile_id)
+        if not json_data:
+            tqdm.write(f"No json data. Skipping tile_id {tile_id}")
+            return
+
         tile_bounds = get_tile_bounds(json_data, x_buffer_distance, y_buffer_distance)
         filtered_geojson_data = filter_geojson_data(all_geojson, tile_bounds) 
 
@@ -283,20 +294,33 @@ def process_tile(tile_id, all_geojson, x_buffer_distance, y_buffer_distance,inpu
             avg_dbh = get_avg_dbh(filtered_geojson_data)
             avg_canopy_radius = calculate_canopy_radius(avg_dbh)
             neighbors = construct_nearest_neighbors(filtered_geojson_data)
+            # test the mem usage here
+            mem_after = memory_usage(-1)[0]
+            print(f'Memory usage after knn: {mem_after:.2f} MiB')
+
             matched_data = match_json_to_geojson(json_data, filtered_geojson_data, neighbors)
+            # test the mem usage here
+            mem_after = memory_usage(-1)[0]
+            print(f'Memory usage after matching: {mem_after:.2f} MiB')
+
             matched_data = post_process_matched_data(matched_data)
             new_geojson = construct_new_geojson(matched_data, avg_canopy_radius)
+            # test the mem usage here
+            mem_after = memory_usage(-1)[0]
+            print(f'Memory usage after constructing new geojson: {mem_after:.2f} MiB')
+
         else:
             new_geojson = construct_new_geojson_from_shade(json_data)
+            # test the mem usage here
+            mem_after = memory_usage(-1)[0]
+            print(f'Memory usage after constructing new geojson: {mem_after:.2f} MiB')
         
         save_new_geojson(new_geojson, output_dir, tile_id)
         tqdm.write(f"New GeoJSON for tile_id {tile_id} saved")
         logging.info(f"New GeoJSON for tile_id {tile_id} saved")
-        # After processing the tile, manually invoke GC to clean up
         gc.collect()
     except Exception as e:
         logging.error(f"Error processing tile_id: {tile_id}. Error: {e}", exc_info=True)
-        # Clean up memory after an error to prevent memory leaks
         gc.collect()
 
 
@@ -323,11 +347,38 @@ def main():
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
     tile_keys = list_s3_dirs(bucket_name, base_prefix) 
 
+    # unprocessed = [
+    # "925140",
+    # "990217",
+    # "40235",
+    # "917117",
+    # "995152",
+    # "20162",
+    # "20155",
+    # "10140",
+    # "10227",
+    # "25232",
+    # "45207",
+    # "992175",
+    # "45162",
+    # "972172",
+    # "20167",
+    # "947132",
+    # "45240",
+    # "40172",
+    # "17227",
+    # "22222",
+    # "42247",
+    # "12230",
+    # "35247"
+    # ]
+
     try:
         with tqdm(total=len(tile_keys), desc="Processing Progress") as progress_bar:
             for tile_key in tile_keys:
                 if is_tile_processed(tile_key, output_dir):
                     progress_bar.update(1)
+                    tqdm.write(f"Tile {tile_key} already saved. Skipping...")
                     continue
                 process_tile(tile_key, all_geojson, x_buffer_distance, y_buffer_distance,input_dir,output_dir)
                 progress_bar.update(1)
@@ -343,3 +394,6 @@ def shutdown_instance():
 if __name__ == "__main__":
     main()
     # shutdown_instance()
+
+# tree_id should be an integer from the census data -- a column that initially contains integers will automatically be converted to floating-point numbers if null values (represented as NaN in pandas) are introduced. 
+# geojson write in a more readable format, not a single line -- space consuming
