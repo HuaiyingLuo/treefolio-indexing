@@ -10,17 +10,15 @@ from sklearn.neighbors import NearestNeighbors
 from memory_profiler import memory_usage
 from memory_profiler import profile 
 from rtree import index
-import time
 import os
 import math
 import csv
 import io
-import signal
+from io import BytesIO
 from tqdm import tqdm
 from json.decoder import JSONDecodeError
 import logging
 import boto3
-from io import BytesIO
 from botocore.exceptions import ClientError
 
 # Configure logging
@@ -29,7 +27,6 @@ if not os.path.exists(log_directory):
     os.makedirs(log_directory)
 log_filename = os.path.join(log_directory, 'match_census.log')
 logging.basicConfig(filename=log_filename, filemode='a', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 
 # Initialize the S3 client
 s3 = boto3.client('s3')
@@ -50,6 +47,7 @@ def list_s3_dirs(bucket_name, prefix):
     return list(dirs)
 
 
+# Load the matched shading data for each tile from the EBS
 def load_matched_shading_data(input_dir, tile_id):
     target_path = os.path.join(input_dir, f'MatchedShadingTrees_{tile_id}.json') 
     try:
@@ -65,7 +63,8 @@ def load_matched_shading_data(input_dir, tile_id):
     except Exception as e:
         logging.error(f"An error occurred while loading shading data for tile {tile_id}: {e}")
         return None
-
+    
+# Get the bounding box for each tile
 def get_tile_bounds(json_data, y_buffer_distance, x_buffer_distance):
     x_coords = [d["PredictedTreeLocation"]["Longitude"] for d in json_data]
     y_coords = [d["PredictedTreeLocation"]["Latitude"] for d in json_data]
@@ -74,8 +73,7 @@ def get_tile_bounds(json_data, y_buffer_distance, x_buffer_distance):
     return box(min(x_coords) - x_buffer_distance, min(y_coords) - y_buffer_distance, 
                max(x_coords) + x_buffer_distance, max(y_coords) + y_buffer_distance)
 
-
-# load all street tree geojson files
+# Load census tree geojson data
 def load_all_geojson_files(folder):
     points = []
     features_properties = []
@@ -92,7 +90,7 @@ def load_all_geojson_files(folder):
                 coords.append(point)
     return {'points': np.array(points), 'features_properties': features_properties, 'coords': coords} 
 
-
+# Filter the census tree geojson data to only include points within the tile bounds
 def filter_geojson_data(geojson_data, tile_bounds):
     filtered_features = []
     for i, point in enumerate(geojson_data['coords']):
@@ -107,7 +105,7 @@ def filter_geojson_data(geojson_data, tile_bounds):
         return None
     return {'type': 'FeatureCollection', 'features': filtered_features}
 
-
+# Calculate the average DBH for the filtered census tree data
 def get_avg_dbh(filter_geojson_data):
     sum_dbh = 0
     features = filter_geojson_data["features"]
@@ -117,7 +115,7 @@ def get_avg_dbh(filter_geojson_data):
             sum_dbh += properties["tree_dbh"]
     return sum_dbh / len(features)
 
-
+# Calculate the canopy radius based on the tree DBH
 def calculate_canopy_radius(tree_dbh):
     tree_dbh_ft = tree_dbh / 12
     tree_dbh_m = tree_dbh_ft / 3.28
@@ -126,7 +124,7 @@ def calculate_canopy_radius(tree_dbh):
     canopy_radius_m = canopy_diameter_m / 2
     return canopy_radius_m
 
-# mem?
+# Construct a nearest neighbors model for the filtered census tree data
 def construct_nearest_neighbors(data):
     features = data['features']
     if not features:  
@@ -137,7 +135,7 @@ def construct_nearest_neighbors(data):
     return NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(points)
 
 
-# mem?
+# Match the JSON tree data to the filtered census tree data based on NN
 def match_json_to_geojson(json_data, geojson_data, neighbors):
     matched_data = []
     for data in json_data:
@@ -156,7 +154,7 @@ def match_json_to_geojson(json_data, geojson_data, neighbors):
     return matched_data 
 
 
-# mem?
+# Post-process the matched data to find the nearest match for each tree_id
 def post_process_matched_data(matched_data):
    # Find the nearest match for each tree_id
     nearest_match_for_tree_id = {}
@@ -183,7 +181,7 @@ def post_process_matched_data(matched_data):
     return matched_data
 
 
-# mem?
+# Construct a new GeoJSON file from the matched shading data
 def construct_new_geojson_from_shade(json_data):
     features = []
 
@@ -225,7 +223,7 @@ def construct_new_geojson_from_shade(json_data):
     return combined_gdf
 
 
-# generator
+# Construct a new GeoJSON file from the matched census data
 def construct_new_geojson(matched_data, avg_canopy_radius):
     features = []
     for data in matched_data:
@@ -394,6 +392,3 @@ def shutdown_instance():
 if __name__ == "__main__":
     main()
     # shutdown_instance()
-
-# tree_id should be an integer from the census data -- a column that initially contains integers will automatically be converted to floating-point numbers if null values (represented as NaN in pandas) are introduced. 
-# geojson write in a more readable format, not a single line -- space consuming
