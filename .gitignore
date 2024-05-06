@@ -4,7 +4,9 @@ BK17/
 StreetTreeGeoJSONs/
 venv/
 sylvania.pem
-test_results/
-result/
 sample_tiles/
+result/
+test_result/
+
+
 
