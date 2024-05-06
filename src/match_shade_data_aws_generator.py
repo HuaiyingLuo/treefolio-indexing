@@ -39,6 +39,7 @@ def list_s3_dirs(bucket_name, prefix):
                 dirs.add(obj['Prefix'].rstrip('/').split('/')[-1])
     return list(dirs)
 
+# Load all tree JSON files from S3
 def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
     prefix = f"{base_prefix}{tile_id}/{year}/JSON_TreeData_{tile_id}/"
     try:
@@ -76,7 +77,7 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year):
     except ClientError as e:
         logging.error(f"Failed to list objects in bucket {bucket_name} with prefix {prefix}: {e}")
             
-
+# Load csv shade data from s3 for each tree and match with the tree data
 def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year):
     for data in json_data:
         tile_ID = data["tile_id"]
@@ -140,6 +141,7 @@ def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year)
         processed_data = {**data, **shade_data_at_max_amplitude, **daily_average_shade_data, **weighted_average_shade_data}
         yield processed_data
     
+# create boundaries for each borough
 def load_boundaries_and_create_index(geojson_path):
     try:
         with open(geojson_path, 'r') as f:
@@ -153,6 +155,7 @@ def load_boundaries_and_create_index(geojson_path):
         logging.error("Failed to load or parse the GeoJSON file: {}".format(e))
         raise
 
+# match the tree points with the geojson boundaries
 def match_points_with_geojson(json_data, idx, geojson_features):
     for point_dict in json_data:
         point = Point(point_dict['PredictedTreeLocation']['Longitude'], point_dict['PredictedTreeLocation']['Latitude'])
@@ -173,7 +176,7 @@ def match_points_with_geojson(json_data, idx, geojson_features):
 
         yield point_dict
 
-# save the json data to ebs
+# save the matched data to EBS temporarily
 def save_json_to_ebs(json_data, output_dir, tile_id):
     output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_id}.json')
     try:
@@ -186,21 +189,19 @@ def save_json_to_ebs(json_data, output_dir, tile_id):
         logging.error(f"Failed to save matched shading trees data for tile_id {tile_id}: {e}")
         return False
 
+
 def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features, output_dir):
     tqdm.write(f"Start processing tile_id {tile_id}")
     # # test the mem usage here
     # mem_start = memory_usage(-1)[0]
     # print(f'Memory usage start: {mem_start:.2f} MiB')
 
-    # batch process the data
     json_data_generator = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year)
     if json_data_generator is None:
         return
 
     shaded_data_generator = match_shade_data_from_s3(json_data_generator, bucket_name, base_prefix, tile_id, year)
-
     geojson_matched_data = match_points_with_geojson(shaded_data_generator, idx, geojson_features)
-    
     save_json_to_ebs(list(geojson_matched_data), output_dir, tile_id)
     
     gc.collect()
@@ -215,7 +216,6 @@ def main():
     # change the bucket here
     bucket_name = 'treefolio-sylvania-data'
     year = '2017'
-    # needed data stored in ec2 instance ebs
     # all_geojson = load_all_geojson_files('/data/Datasets/StreetTreeGeoJSONs') 
     boundary_path = '/data/Datasets/Boundaries/Borough_Boundaries.geojson'
     output_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
@@ -227,7 +227,7 @@ def main():
 
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
-    # tile_keys = list_s3_dirs(bucket_name, base_prefix) 
+    tile_keys = list_s3_dirs(bucket_name, base_prefix) 
 
     # unprocessed = [
     # "925140",
@@ -254,8 +254,6 @@ def main():
     # "12230",
     # "35247"
     # ]
-
-    tile_keys = ['10140', '45240', '40172', '45162']
    
     # Load GeoJSON data once and create R-tree index
     idx, geojson_features = load_boundaries_and_create_index(boundary_path)
@@ -274,9 +272,11 @@ def main():
         logging.error("Error occurred during the main processing", exc_info=True)
     logging.info("SCRIPT_END: Processing complete.")
 
+
 def shutdown_instance():
     print("Shutting down the instance...")
     os.system('sudo shutdown now')
+
 
 if __name__ == "__main__":
     main()

@@ -38,6 +38,7 @@ def list_s3_dirs(bucket_name, prefix):
                 dirs.add(obj['Prefix'].rstrip('/').split('/')[-1])
     return list(dirs)
 
+# Load all JSON tree data from S3
 def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, batch_size=100):
     prefix = f"{base_prefix}{tile_id}/{year}/JSON_TreeData_{tile_id}/"
     batch = []
@@ -75,7 +76,7 @@ def load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, batch_size=
     except ClientError as e:
         logging.error(f"Failed to list objects in bucket {bucket_name} with prefix {prefix}: {e}")
             
-
+# Load csv shade data from S3 and match with the JSON tree data
 def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year):
     for data in json_data:
         tile_ID = data["tile_id"]
@@ -139,6 +140,7 @@ def match_shade_data_from_s3(json_data, bucket_name, base_prefix, tile_id, year)
         processed_data = {**data, **shade_data_at_max_amplitude, **daily_average_shade_data, **weighted_average_shade_data}
         yield processed_data
     
+# Create borough boundaries 
 def load_boundaries_and_create_index(geojson_path):
     try:
         with open(geojson_path, 'r') as f:
@@ -152,7 +154,8 @@ def load_boundaries_and_create_index(geojson_path):
         logging.error("Failed to load or parse the GeoJSON file: {}".format(e))
         raise
 
-def match_points_with_geojson(json_data, idx, geojson_features): # what is idx
+# Match the points with the borough boundaries
+def match_points_with_geojson(json_data, idx, geojson_features): 
     for point_dict in json_data:
         point = Point(point_dict['PredictedTreeLocation']['Longitude'], point_dict['PredictedTreeLocation']['Latitude'])
         match_found = False  # Flag to indicate a successful match
@@ -172,7 +175,7 @@ def match_points_with_geojson(json_data, idx, geojson_features): # what is idx
 
         yield point_dict
 
-# save the json data to ebs
+# Save the matched data to EBS
 def save_json_to_ebs(json_batch, output_dir, tile_id):
     output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_id}.json')
     if not os.path.exists(output_dir):
@@ -189,10 +192,12 @@ def save_json_to_ebs(json_batch, output_dir, tile_id):
         logging.error(f"Failed to save matched shading trees data for tile_id {tile_id}: {e}")
         return False
 
+
 def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features, output_dir, output_temp_dir):
     logging.info(f"Start processing batch tile_id {tile_id}")
     tqdm.write(f"Start processing batch tile_id {tile_id}")
-    json_data_batches = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, 1)
+    # change the batch size here, default is 100, for large csv files, reduce the batch size
+    json_data_batches = load_json_files_from_s3(bucket_name, base_prefix, tile_id, year, 50)
     
     mem_after = memory_usage(-1)[0]
     print(f'Memory usage after loading batches: {mem_after:.2f} MiB')
@@ -233,13 +238,13 @@ def process_tile(bucket_name, base_prefix, tile_id, year, idx, geojson_features,
     logging.info(f"New GeoJSON for tile_id {tile_id} saved, Finished processing all batches")
  
 
-
 def is_tile_processed(tile_key, output_dir):
     # Check if a file corresponding to the tile_key exists in output_dir
     output_file_path = os.path.join(output_dir, f'MatchedShadingTrees_{tile_key}.json')
     return os.path.exists(output_file_path)
 
-# Main execution and other functions remain largely unchanged
+
+# Main execution 
 def main():
     # change the bucket here
     bucket_name = 'treefolio-sylvania-data'
@@ -306,9 +311,11 @@ def main():
         logging.error("Error occurred during the main processing", exc_info=True)
     logging.info("SCRIPT_END: Processing complete.")
 
+
 def shutdown_instance():
     print("Shutting down the instance...")
     os.system('sudo shutdown now')
+
 
 if __name__ == "__main__":
     main()
