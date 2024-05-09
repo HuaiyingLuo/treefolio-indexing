@@ -22,10 +22,10 @@ import boto3
 from botocore.exceptions import ClientError
 
 # Configure logging
-log_directory = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017'
+log_directory = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017_1'
 if not os.path.exists(log_directory):
     os.makedirs(log_directory)
-log_filename = os.path.join(log_directory, 'match_census.log')
+log_filename = os.path.join(log_directory, 'match_census_1.log')
 logging.basicConfig(filename=log_filename, filemode='a', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Initialize the S3 client
@@ -140,9 +140,13 @@ def match_json_to_geojson(json_data, geojson_data, neighbors):
     matched_data = []
     for data in json_data:
         point = np.array([[data["PredictedTreeLocation"]["Longitude"], data["PredictedTreeLocation"]["Latitude"]]])
+        # # debug
+        # print('point in match json to geojson:', point)  
         distance, index = neighbors.kneighbors(point)
         matched_properties = geojson_data['features'][index[0][0]]['properties'] 
         matched_geojson_point = geojson_data['features'][index[0][0]]['geometry']['coordinates'] 
+        # # debug
+        # print('matched_geojson_point in match json to geojson:', matched_geojson_point) 
         matched_data.append({
             'json_data': data,
             'geojson_properties': matched_properties, 
@@ -168,12 +172,16 @@ def post_process_matched_data(matched_data):
         if data['json_data']['Tree_CountId'] == nearest_match_for_tree_id[tree_id]['json_data']['Tree_CountId']:
             data['isNearest'] = True  
             data['hasTreeCensusID'] = True
-            data['UpdatedLocation'] = data['geojson_point']      
+            data['UpdatedLocation'] = data['geojson_point']   
+            # # debug 
+            # print('UpdatedLocation in post process:', data['UpdatedLocation'])     
         else:
             data['isNearest'] = False   
             data['hasTreeCensusID'] = False
             coor_dict = data['json_data']["PredictedTreeLocation"] 
             data['UpdatedLocation'] = [coor_dict['Longitude'], coor_dict['Latitude']]   
+            # # debug 
+            # print('UpdatedLocation in post process:', data['UpdatedLocation'])  
             # delete all the census info: 'geojson_properties', 'tree_id', 'geojson_point'
             data['tree_id'] = None
             data['geojson_properties'] = None
@@ -208,8 +216,13 @@ def construct_new_geojson_from_shade(json_data):
 
     for data in json_data: # data this a dict, keep all the data properties, and add default_properties{}
         data.update(default_properties)
-        data["Predicted Latitude"] =  data['PredictedTreeLocation']['Latitude'],
+        
+        data["Predicted Latitude"] =  data['PredictedTreeLocation']['Latitude'] 
         data["Predicted Longitude"] = data['PredictedTreeLocation']['Longitude']
+        # # debug
+        # print('PredictedTreeLocation in construct from shade:', data["PredictedTreeLocation"])  
+        # print('Predicted Longitude in construct from shade:', data["Predicted Longitude"])
+        # print('Predicted Latitude in construct from shade:', data["Predicted Latitude"])
 
         properties = {key: data[key] for key in data}
         point = Point(data['PredictedTreeLocation']['Longitude'], data['PredictedTreeLocation']['Latitude'])
@@ -237,6 +250,9 @@ def construct_new_geojson(matched_data, avg_canopy_radius):
             "hasTreeCensusID": data['hasTreeCensusID']
             }
         properties.update(additional_properties)  
+        # # debug
+        # print('Predicted Longitude in construct:', properties["Predicted Longitude"])
+        # print('Predicted Latitude in construct:', properties["Predicted Latitude"])
         geo_properties = data['geojson_properties'] 
         if geo_properties:
             properties.update(geo_properties)
@@ -270,6 +286,11 @@ def construct_new_geojson(matched_data, avg_canopy_radius):
     
 
 def save_new_geojson(new_geojson, output_folder, tile_id):
+    # # debug
+    # for column in new_geojson.columns:
+    #     if any(isinstance(x, tuple) for x in new_geojson[column]):
+    #         print(f"{column} contains tuples")
+
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     output_path = os.path.join(output_folder, f'MatchedCensusTrees_{tile_id}.geojson')
@@ -336,7 +357,7 @@ def main():
     all_geojson = load_all_geojson_files('/data/Datasets/StreetTreeGeoJSONs') 
     # boundary_path = '/data/Datasets/Boundaries/Borough_Boundaries.geojson'
     input_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
-    output_dir = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017'
+    output_dir = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017_1'
 
     y_buffer_distance = 0.00010484
     x_buffer_distance = 0.00009009
@@ -344,6 +365,11 @@ def main():
     # whole dataset
     base_prefix = 'ProcessedLasData/Sept17th-2023/'
     tile_keys = list_s3_dirs(bucket_name, base_prefix) 
+
+    # # read tile keys from csv file
+    # with open('/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017/size_50.csv', 'r') as f:
+    #     tile_keys = [line.strip() for line in f] 
+    #     print(tile_keys)
 
     # unprocessed = [
     # "925140",

@@ -170,37 +170,53 @@
 # print('finished removing empty JSON files.')
 
 
-# find the diff
+# # find the diff
+# import os
+
+# # Set the directory where the matched JSON files are stored
+# shading_output_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
+
+# # List all files in the directory   
+# files = os.listdir(shading_output_dir)
+# shading_tile_ids = []   
+# for file in files:
+#     # Check if the file is a JSON file
+#     if file.endswith('.json'):
+#         # Extract the tile ID from the filename
+#         tile_id = file.split('_')[-1].split('.')[0]
+#         shading_tile_ids.append(tile_id)
+
+# census_output_dir = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017' 
+# files = os.listdir(census_output_dir)
+# census_tile_ids = []
+# for file in files:
+#     # Check if the file is a JSON file
+#     if file.endswith('.geojson'):
+#         # Extract the tile ID from the filename
+#         tile_id = file.split('_')[-1].split('.')[0]
+#         census_tile_ids.append(tile_id)
+
+# shading_tile_ids = set(shading_tile_ids)
+# census_tile_ids = set(census_tile_ids)
+# diff = list(shading_tile_ids - census_tile_ids)
+
+# print(diff)
+
+# find out all the files with size 50.0 B and get the tile ids
 import os
-
-# Set the directory where the matched JSON files are stored
-shading_output_dir = '/data/Datasets/MatchingResult_All/MatchedShadingTrees_2017'
-
-# List all files in the directory   
-files = os.listdir(shading_output_dir)
-shading_tile_ids = []   
+target_dir = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017' 
+files = os.listdir(target_dir)
+size_50 = []
 for file in files:
-    # Check if the file is a JSON file
-    if file.endswith('.json'):
-        # Extract the tile ID from the filename
+    if os.path.getsize(os.path.join(target_dir, file)) == 50:
         tile_id = file.split('_')[-1].split('.')[0]
-        shading_tile_ids.append(tile_id)
+        size_50.append(tile_id)
+save_path = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017/size_50.csv'
+with open(save_path, 'w') as f:
+    for file in size_50:
+        f.write(file + '\n')
+print('length of size_50:', len(size_50))
 
-census_output_dir = '/data/Datasets/MatchingResult_All/MatchedCensusTrees_2017' 
-files = os.listdir(census_output_dir)
-census_tile_ids = []
-for file in files:
-    # Check if the file is a JSON file
-    if file.endswith('.geojson'):
-        # Extract the tile ID from the filename
-        tile_id = file.split('_')[-1].split('.')[0]
-        census_tile_ids.append(tile_id)
-
-shading_tile_ids = set(shading_tile_ids)
-census_tile_ids = set(census_tile_ids)
-diff = list(shading_tile_ids - census_tile_ids)
-
-print(diff)
 
 
 
